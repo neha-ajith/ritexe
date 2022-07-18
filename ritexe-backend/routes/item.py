@@ -11,11 +11,11 @@ def fetch_items():
 
 @item.post('/items/')
 def post_item(item: Item):
-    return conn.execute(items.insert().values(name=item.name,quantity=item.quantity))
+    return conn.execute(items.insert().values(name=item.name,quantity=item.quantity,date=item.date,user_id=item.user_id))
 
 @item.put('/items/{id}')
 def update_item(id: int,item: Item):
-    return conn.execute(items.update().values(name=item.name,quantity=item.quantity).where(items.c.item_id == id))
+    return conn.execute(items.update().values(name=item.name,quantity=item.quantity,date=item.date,user_id=item.user_id).where(items.c.item_id == id))
 
 @item.delete('/items/{id}')
 def delete_item(id: int):

@@ -11,11 +11,11 @@ def fetch_users():
 
 @user.post('/users/')
 def post_user(user: User):
-    return conn.execute(users.insert().values(username=user.username,name=user.name,email=user.email,password=user.password))
+    return conn.execute(users.insert().values(username=user.username,name=user.name,email=user.email,password=user.password,upVotes=user.upVotes))
 
 @user.put('/users/{id}')
 def update_user(id: int,user: User):
-    return conn.execute(users.update().values(username=user.username,name=user.name,email=user.email,password=user.password).where(users.c.id == id))
+    return conn.execute(users.update().values(username=user.username,name=user.name,email=user.email,password=user.password,upVotes=user.upVotes).where(users.c.id == id))
 
 @user.delete('/users/{id}')
 def delete_user(id: int):

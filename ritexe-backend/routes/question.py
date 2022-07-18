@@ -11,11 +11,11 @@ def fetch_questions():
 
 @question.post('/questions/')
 def post_question(question: Question):
-    return conn.execute(questions.insert().values(qs_title=question.qs_title,qs_desc=question.qs_desc))
+    return conn.execute(questions.insert().values(qs_title=question.qs_title,qs_desc=question.qs_desc,date=question.date,user_id=question.user_id))
 
 @question.put('/questions/{id}')
 def update_question(id: int,question: Question):
-    return conn.execute(questions.update().values(qs_title=question.qs_title,qs_desc=question.qs_desc).where(questions.c.qs_id == id))
+    return conn.execute(questions.update().values(qs_title=question.qs_title,qs_desc=question.qs_desc,date=question.date,user_id=question.user_id).where(questions.c.qs_id == id))
 
 @question.delete('/questions/{id}')
 def delete_question(id: int):

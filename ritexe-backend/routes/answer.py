@@ -11,11 +11,11 @@ def fetch_answers():
 
 @answer.post('/answers/')
 def post_answer(answer: Answer):
-    return conn.execute(answers.insert().values(ans=answer.ans,upvote=answer.upVote,downvote=answer.downVote))
+    return conn.execute(answers.insert().values(ans=answer.ans,upvote=answer.upVote,downvote=answer.downVote,date=answer.date,qs_id=answer.qs_id,user_id=answer.user_id))
 
 @answer.put('/answers/{id}')
 def update_answer(id: int,answer: Answer):
-    return conn.execute(answers.update().values(ans=answer.ans,upvote=answer.upVote,downvote=answer.downVote).where(answers.c.ans_id == id))
+    return conn.execute(answers.update().values(ans=answer.ans,upvote=answer.upVote,downvote=answer.downVote,date=answer.date,qs_id=answer.qs_id,user_id=answer.user_id).where(answers.c.ans_id == id))
 
 @answer.delete('/answers/{id}')
 def delete_answer(id: int):
