@@ -7,3 +7,6 @@ S6 CSE Course miniproject.
 
 ## Start server:
 ```uvicorn index:app --reload```
+
+## Endpoint:
+<a href="http://localhost:8000/docs">http://localhost:8000/docs</a>
