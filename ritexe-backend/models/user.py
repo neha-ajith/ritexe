@@ -7,7 +7,7 @@ Column('username',String(255)),
 Column('name',String(255)),
 Column('email',String(255)),
 Column('password',String(255)),
-Column('upVotes',Integer),
+Column('upvote',Integer),
 )
 
 meta.create_all(engine)

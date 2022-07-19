@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:ritexe/screens/feed.dart';
 import 'package:ritexe/screens/signup.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
                   child: widget!,
                 );
               },
-              home: SignUp(),
+              home: Feed(),
             ));
   }
 }

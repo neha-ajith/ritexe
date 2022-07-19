@@ -9,6 +9,10 @@ question = APIRouter()
 def fetch_questions():
     return conn.execute(questions.select()).fetchall()
 
+@question.get('/questions/{num}')
+def fetch_recommended_questions(num:int):
+    return conn.execute(questions.select()).fetchmany(num)
+
 @question.post('/questions/')
 def post_question(question: Question):
     return conn.execute(questions.insert().values(qs_title=question.qs_title,qs_desc=question.qs_desc,date=question.date,user_id=question.user_id))

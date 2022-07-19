@@ -7,3 +7,6 @@ BoxDecoration backgroundImage = const BoxDecoration(
     fit: BoxFit.cover,
   ),
 );
+
+Color primaryColor = const Color(0xff8D9EB2);
+Color secondaryColor = const Color(0xff3E3E3E);
