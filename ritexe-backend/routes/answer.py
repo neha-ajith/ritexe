@@ -9,6 +9,10 @@ answer = APIRouter()
 def fetch_answers():
     return conn.execute(answers.select()).fetchall()
 
+@answer.get('/answers/{qsId}')
+def fetch_those_answers(qsId: int):
+    return conn.execute(answers.select().where(answers.c.qs_id==qsId)).fetchall()
+
 @answer.post('/answers/')
 def post_answer(answer: Answer):
     return conn.execute(answers.insert().values(ans=answer.ans,upvote=answer.upVote,downvote=answer.downVote,date=answer.date,qs_id=answer.qs_id,user_id=answer.user_id))

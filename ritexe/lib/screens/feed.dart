@@ -3,7 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritexe/globals/globals.dart';
+import 'package:ritexe/models/question_thumbnail.dart';
 import 'package:ritexe/widgets/question_card.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Feed extends StatefulWidget {
   const Feed({Key? key}) : super(key: key);
@@ -12,12 +15,37 @@ class Feed extends StatefulWidget {
   State<Feed> createState() => _FeedState();
 }
 
+Future fetchQuestion() async {
+  var questionResponse =
+      await http.get(Uri.parse("http://10.0.2.2:8000/questions/"));
+  var questionThumbnails = [];
+  print(jsonDecode(questionResponse.body));
+
+  var data = jsonDecode(questionResponse.body);
+  for (var q in data) {
+    var answerResponse =
+        await http.get(Uri.parse("http://10.0.2.2:8000/answers/${q['qs_id']}"));
+    int num = jsonDecode(answerResponse.body).length;
+    questionThumbnails.add(QuestionThumbNail(
+      title: q['qs_title'],
+      noOfAnswers: num,
+    ));
+  }
+  return questionThumbnails;
+}
+
 class _FeedState extends State<Feed> {
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchQuestion();
   }
 
   @override
@@ -73,14 +101,26 @@ class _FeedState extends State<Feed> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
-        child: Column(
-          children: [
-            QuestionCard(),
-            QuestionCard(),
-            QuestionCard(),
-            QuestionCard(),
-          ],
+        padding: EdgeInsets.symmetric(horizontal: 8),
+        child: FutureBuilder(
+          future: fetchQuestion(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.data == null) {
+              return Center(
+                  child: CircularProgressIndicator(
+                color: secondaryColor,
+              ));
+            } else {
+              return ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return QuestionCard(
+                        title: snapshot.data[index].title,
+                        noOfAnswers:
+                            snapshot.data[index].noOfAnswers.toString());
+                  });
+            }
+          },
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
