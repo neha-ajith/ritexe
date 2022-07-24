@@ -9,6 +9,7 @@ import 'package:ritexe/screens/posteditems.dart';
 import 'package:ritexe/screens/postque.dart';
 import 'package:ritexe/screens/test.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ritexe/screens/temp.dart';
 
 void main() {
   runApp(const MyApp());

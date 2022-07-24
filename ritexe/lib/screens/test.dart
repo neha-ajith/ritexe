@@ -38,22 +38,23 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: fetchUsers(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.data == null) {
-            return CircularProgressIndicator();
-          } else {
-            return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                      title: Text(snapshot.data[index].name),
-                      subtitle: Text(snapshot.data[index].email));
-                });
-          }
-        },
-      ),
+       backgroundColor: primaryColor,
+      // body: FutureBuilder(
+      //   future: fetchUsers(),
+      //   builder: (BuildContext context, AsyncSnapshot snapshot) {
+      //     if (snapshot.data == null) {
+      //       return CircularProgressIndicator();
+      //     } else {
+      //       return ListView.builder(
+      //           itemCount: snapshot.data.length,
+      //           itemBuilder: (BuildContext context, int index) {
+      //             return ListTile(
+      //                 title: Text(snapshot.data[index].name),
+      //                 subtitle: Text(snapshot.data[index].email));
+      //           });
+      //     }
+      //   },
+      // ),
     );
 
     // decoration: backgroundImage);
