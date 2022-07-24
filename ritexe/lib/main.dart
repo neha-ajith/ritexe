@@ -2,7 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:ritexe/screens/feed.dart';
-import 'package:ritexe/screens/signup.dart';
+import 'package:ritexe/screens/myanswers.dart';
+import 'package:ritexe/screens/myquestions.dart';
+import 'package:ritexe/screens/notifications.dart';
+import 'package:ritexe/screens/posteditems.dart';
+import 'package:ritexe/screens/postque.dart';
+import 'package:ritexe/screens/test.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
@@ -28,7 +33,7 @@ class MyApp extends StatelessWidget {
                   child: widget!,
                 );
               },
-              home: Feed(),
+              home: postque(),
             ));
   }
 }
