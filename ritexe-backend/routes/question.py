@@ -13,9 +13,9 @@ def fetch_questions():
 def fetch_user_questions(uId:int):
     return conn.execute(questions.select().where(questions.c.user_id==uId)).fetchall()
 
-# @question.get('/questions/{id}')
-# def fetch_one_question(id: int):
-#     return conn.execute(questions.select().where(questions.c.qs_id==id)).fetchall()
+@question.get('/questions/fetch/{id}')
+def fetch_one_question(id: int):
+    return conn.execute(questions.select().where(questions.c.qs_id==id)).fetchall()
 
 @question.post('/questions/')
 def post_question(question: Question):
