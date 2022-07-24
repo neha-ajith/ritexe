@@ -85,6 +85,117 @@ class PostQuestion extends StatelessWidget {
             ),
           ),
         ],
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          children: [
+            SizedBox(height: 50),
+            //SizedBox(height: 20),
+            //SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(22),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(.05),
+                  ),
+                  BoxShadow(
+                    color: Colors.white,
+                    offset: const Offset(0, 1.6),
+                    blurRadius: 1,
+                    spreadRadius: -1,
+                  ),
+                ],
+              ),
+              width: 400,
+              height: 55,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                child: Expanded(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none, hintText: 'Question Title'),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 30),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(22),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(.05),
+                  ),
+                  BoxShadow(
+                    color: Colors.white,
+                    offset: const Offset(0, 1.6),
+                    blurRadius: 1,
+                    spreadRadius: -1,
+                  ),
+                ],
+              ),
+              width: 400,
+              height: 200,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                child: Expanded(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Question Description'),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 30),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(22),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(.05),
+                  ),
+                  BoxShadow(
+                    color: Colors.white,
+                    offset: const Offset(0, 1.6),
+                    blurRadius: 1,
+                    spreadRadius: -1,
+                  ),
+                ],
+              ),
+              width: 400,
+              height: 55,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                child: Expanded(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none, hintText: 'Tags'),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 30),
+            ElevatedButton(
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
+                  child: Text(
+                    "Post",
+                    style: TextStyle(fontSize: 22),
+                  )),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(secondaryColor),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ))),
+              onPressed: () {},
+            ),
+          ],
+        ),
       ),
     );
   }
