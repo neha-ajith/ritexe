@@ -1,6 +1,3 @@
-// ignore: unused_import
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
 
 import 'package:ritexe/screens/feed.dart';
@@ -10,12 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritexe/globals/globals.dart';
 import 'package:ritexe/widgets/question_card.dart';
 
-void main() {
-  runApp(Sell());
-}
-
-// ignore: use_key_in_widget_constructors
 class Sell extends StatelessWidget {
+  const Sell({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
