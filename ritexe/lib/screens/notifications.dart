@@ -10,24 +10,22 @@ class Notifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: primaryColor,
-        appBar: AppBar(
-          backgroundColor: secondaryColor,
-          title: Text("Notifications"),
-          leading: BackButton(color: Colors.white),
-        ),
-        body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: Column(children: [
-              NotificationCard(
-                  title: "you have a new buyer!", date: "15 Jun, 2022"),
-              NotificationCard(
-                  title: "you have a new buyer!", date: "15 Jun, 2022"),
-              NotificationCard(
-                  title: "you have a new buyer!", date: "15 Jun, 2022"),
-              NotificationCard(
-                  title: "you have a new buyer!", date: "15 Jun, 2022")
-            ])));
+    return Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        child: Column(children: [
+          NotificationCard(
+              title: "you have a new buyer!", date: "15 Jun, 2022"),
+          NotificationCard(
+              title: "you have a new buyer!", date: "15 Jun, 2022"),
+          NotificationCard(
+              title: "you have a new buyer!", date: "15 Jun, 2022"),
+          NotificationCard(title: "you have a new buyer!", date: "15 Jun, 2022")
+        ]));
   }
 }
+
+AppBar notificationsAppBar = AppBar(
+  backgroundColor: secondaryColor,
+  title: Text("Notifications"),
+  // leading: BackButton(color: Colors.white),
+);
