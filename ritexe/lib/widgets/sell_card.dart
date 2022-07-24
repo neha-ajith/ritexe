@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SellCard extends StatelessWidget {
-  final String title, qty,date;
+  final String title, qty, date;
   const SellCard({required this.title, required this.qty, required this.date});
 
   @override
@@ -58,7 +58,6 @@ class SellCard extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 14.sp),
                       ),
-                      
                     ],
                   ),
                 ],

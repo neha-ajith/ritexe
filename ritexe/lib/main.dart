@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
                   child: widget!,
                 );
               },
-              home: postque(),
+              home: PostedItems(),
             ));
   }
 }
