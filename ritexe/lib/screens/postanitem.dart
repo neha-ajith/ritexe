@@ -2,29 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:ritexe/globals/globals.dart';
 import 'package:ritexe/widgets/question_card.dart';
 
-class postque extends StatelessWidget {
-  const postque({Key? key}) : super(key: key);
-
+class postanitem extends StatelessWidget {
+  const postanitem({Key? key}) : super(key: key);
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColor,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(170),
-        child: AppBar(
-          backgroundColor: secondaryColor,
-          flexibleSpace: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Post a question",
-                style: TextStyle(
-                    fontSize: 35,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
+      appBar: AppBar(
+        backgroundColor: secondaryColor,
+        flexibleSpace: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Post an item",
+              style: TextStyle(
+                  fontSize: 35,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
       ),
       body: Padding(
@@ -56,7 +53,7 @@ class postque extends StatelessWidget {
                 child: Expanded(
                   child: TextFormField(
                     decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Question Title'),
+                        border: InputBorder.none, hintText: 'Item Name'),
                   ),
                 ),
               ),
@@ -84,8 +81,7 @@ class postque extends StatelessWidget {
                 child: Expanded(
                   child: TextFormField(
                     decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Question Description'),
+                        border: InputBorder.none, hintText: 'Description'),
                   ),
                 ),
               ),
@@ -113,7 +109,35 @@ class postque extends StatelessWidget {
                 child: Expanded(
                   child: TextFormField(
                     decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Tags'),
+                        border: InputBorder.none, hintText: 'Quantity'),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 30),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(22),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(.05),
+                  ),
+                  BoxShadow(
+                    color: Colors.white,
+                    offset: const Offset(0, 1.6),
+                    blurRadius: 1,
+                    spreadRadius: -1,
+                  ),
+                ],
+              ),
+              width: 400,
+              height: 55,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                child: Expanded(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none, hintText: 'Contact'),
                   ),
                 ),
               ),
