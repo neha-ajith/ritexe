@@ -1,9 +1,7 @@
-//todo: pull new changes.
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:ritexe/globals/globals.dart';
-import 'package:ritexe/screens/temp.dart';
-import 'package:ritexe/widgets/question_card.dart';
 import 'package:ritexe/widgets/sell_card.dart';
 
 class PostedItems extends StatelessWidget {
@@ -23,10 +21,13 @@ class PostedItems extends StatelessWidget {
         child: Column(
           children: [
             SellCard(
-                qty: "1", title: "Set square available", date: "12 Jun, 2022,"),
-            QuestionCard(title: "set square available", noOfAnswers: "4"),
-            QuestionCard(title: "set square available", noOfAnswers: "2"),
-            QuestionCard(title: "set square available", noOfAnswers: "1"),
+                qty: "1", title: "Set square available", date: "12 Jun, 2022"),
+            SellCard(
+                qty: "1", title: "Set square available", date: "12 Jun, 2022"),
+            SellCard(
+                qty: "1", title: "Set square available", date: "12 Jun, 2022"),
+            SellCard(
+                qty: "1", title: "Set square available", date: "12 Jun, 2022"),
           ],
         ),
       ),

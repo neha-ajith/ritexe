@@ -1,7 +1,6 @@
 // ignore: unused_import
 // ignore_for_file: unused_import
 
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 
@@ -17,6 +16,7 @@ import '../widgets/sell_card.dart';
 
 
 class Profile extends StatelessWidget {
+  const Profile({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,21 +40,21 @@ class Profile extends StatelessWidget {
              height: 100,
              width: 100,
            ),
-           Expanded(
-             child: Container(
-               color: Colors.orange,
-               height: 100,
-             ),
-           ),
-           Container(
-             color: Colors.blue,
-             height: 100,
-             width: 100,
-           ),
+          //  Expanded(
+          //    child: Container(
+          //      color: Colors.orange,
+          //      height: 100,
+          //    ),
+          //  ),
+          //  Container(
+          //    color: Colors.blue,
+          //    height: 100,
+          //    width: 100,
+          //  ),
          ],
        ),
    
-        )
+       )
         
     //    body: Center(
    //       child: Text('Hello World'),
