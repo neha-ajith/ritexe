@@ -12,7 +12,7 @@ class Sell extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8),
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
         child: Column(children: [
           SellCard(
               title: "set square available", qty: "1", date: "15 June,2022"),
@@ -51,11 +51,11 @@ AppBar sellAppBar = AppBar(
       width: 250.w,
       height: 35.h,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: Row(
           children: [
             Icon(Icons.search, color: Colors.grey),
-            SizedBox(width: 10),
+            SizedBox(width: 10.w),
             Expanded(
               child: TextFormField(
                 decoration: InputDecoration(

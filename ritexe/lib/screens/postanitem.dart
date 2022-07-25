@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:ritexe/globals/globals.dart';
-import 'package:ritexe/widgets/question_card.dart';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-class postanitem extends StatelessWidget {
-  const postanitem({Key? key}) : super(key: key);
- 
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ritexe/globals/globals.dart';
+
+class PostItem extends StatelessWidget {
+  const PostItem({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +19,7 @@ class postanitem extends StatelessWidget {
             Text(
               "Post an item",
               style: TextStyle(
-                  fontSize: 35,
+                  fontSize: 33.sp,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
             ),
@@ -25,12 +27,9 @@ class postanitem extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
         child: Column(
           children: [
-            SizedBox(height: 50),
-            //SizedBox(height: 20),
-            //SizedBox(height: 10),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(22),
@@ -46,10 +45,10 @@ class postanitem extends StatelessWidget {
                   ),
                 ],
               ),
-              width: 400,
-              height: 55,
+              width: 400.w,
+              height: 50.h,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 5.h),
                 child: Expanded(
                   child: TextFormField(
                     decoration: InputDecoration(

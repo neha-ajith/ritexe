@@ -27,5 +27,4 @@ class Notifications extends StatelessWidget {
 AppBar notificationsAppBar = AppBar(
   backgroundColor: secondaryColor,
   title: Text("Notifications"),
-  // leading: BackButton(color: Colors.white),
 );
