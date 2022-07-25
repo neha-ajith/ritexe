@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ritexe/globals/globals.dart';
 import 'package:ritexe/widgets/notification_card.dart';
 
 class Notifications extends StatelessWidget {
@@ -24,7 +23,4 @@ class Notifications extends StatelessWidget {
   }
 }
 
-AppBar notificationsAppBar = AppBar(
-  backgroundColor: secondaryColor,
-  title: Text("Notifications"),
-);
+Text notificationsAppBar = Text("Notifications");

@@ -22,7 +22,6 @@ Future fetchQuestion() async {
   var questionResponse =
       await http.get(Uri.parse("http://10.0.2.2:8000/questions/"));
   var questionThumbnails = [];
-  print(jsonDecode(questionResponse.body));
 
   var data = jsonDecode(questionResponse.body);
   for (var q in data) {
@@ -38,14 +37,6 @@ Future fetchQuestion() async {
 }
 
 class _FeedState extends State<Feed> {
-  List<Widget> screens = [Questions(), PostQuestion(), Sell(), Notifications()];
-  List<PreferredSizeWidget> appBars = [
-    questionAppBar,
-    postQuestionAppBar,
-    sellAppBar,
-    notificationsAppBar
-  ];
-
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
@@ -61,9 +52,19 @@ class _FeedState extends State<Feed> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> screens = [Questions(), PostQuestion(), Notifications()];
+    List<Widget> appBars = [
+      questionAppBar(context),
+      postQuestionAppBar,
+      notificationsAppBar
+    ];
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: appBars.elementAt(_selectedIndex),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: secondaryColor,
+        title: appBars.elementAt(_selectedIndex),
+      ),
       backgroundColor: primaryColor,
       body: screens.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
@@ -71,24 +72,14 @@ class _FeedState extends State<Feed> {
         backgroundColor: secondaryColor,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.question_mark),
-            label: 'Questions',
-          ),
+              icon: Icon(Icons.question_mark), label: 'Questions'),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add new'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Add new',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Shop',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
-          ),
+              icon: Icon(Icons.notifications), label: 'Notifications'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.white,
+        unselectedItemColor: primaryColor,
         onTap: _onItemTapped,
       ),
     );
@@ -130,9 +121,8 @@ class _QuestionsState extends State<Questions> {
   }
 }
 
-AppBar questionAppBar = AppBar(
-  backgroundColor: secondaryColor,
-  title: Row(
+Row questionAppBar(BuildContext context) {
+  return Row(
     children: [
       CircleAvatar(
         child: Icon(
@@ -176,6 +166,14 @@ AppBar questionAppBar = AppBar(
         ),
       ),
       SizedBox(width: 10.w),
+      IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Sell()),
+            );
+          },
+          icon: Icon(Icons.shopping_cart, color: primaryColor))
     ],
-  ),
-);
+  );
+}
