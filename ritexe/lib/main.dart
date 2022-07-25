@@ -3,10 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:ritexe/screens/feed.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ritexe/screens/myprofile.dart';
-import 'package:ritexe/screens/postanitem.dart';
-import 'package:ritexe/screens/posteditems.dart';
-import 'package:ritexe/screens/sell.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +26,7 @@ class MyApp extends StatelessWidget {
                   child: widget!,
                 );
               },
-              home: PostItem(),
+              home: Feed(),
             ));
   }
 }

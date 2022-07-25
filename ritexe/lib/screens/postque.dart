@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritexe/globals/globals.dart';
 
 class PostQuestion extends StatelessWidget {
@@ -9,10 +10,10 @@ class PostQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 20.h),
       child: Column(
         children: [
-          SizedBox(height: 50),
+          SizedBox(height: 100.h),
           TextField(
             decoration: InputDecoration(
               filled: true,
@@ -26,12 +27,11 @@ class PostQuestion extends StatelessWidget {
                 borderRadius: BorderRadius.circular(22),
               ),
               focusedBorder: OutlineInputBorder(
-                gapPadding: 0.0,
                 borderRadius: BorderRadius.circular(22),
               ),
             ),
           ),
-          SizedBox(height: 50),
+          SizedBox(height: 20.h),
           TextField(
             decoration: InputDecoration(
               filled: true,
@@ -50,39 +50,40 @@ class PostQuestion extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 50),
-          // TextField(
-          //   decoration: InputDecoration(
-          //     filled: true,
-          //     fillColor: Colors.white,
-          //     border: OutlineInputBorder(),
-          //     hintText: "Tags",
-          //     errorBorder: OutlineInputBorder(
-          //       borderRadius: BorderRadius.circular(22),
-          //     ),
-          //     enabledBorder: OutlineInputBorder(
-          //       borderRadius: BorderRadius.circular(22),
-          //     ),
-          //     focusedBorder: OutlineInputBorder(
-          //       gapPadding: 0.0,
-          //       borderRadius: BorderRadius.circular(22),
-          //     ),
-          //   ),
-          // ),
-          SizedBox(height: 50),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(secondaryColor),
-            ),
-            onPressed: () {},
-            child: Text(
-              "Post",
-              style: TextStyle(
-                backgroundColor: secondaryColor,
-                fontSize: 20,
-                color: Colors.white,
+          SizedBox(height: 20.h),
+          TextField(
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(),
+              hintText: "Tags",
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(22),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(22),
+              ),
+              focusedBorder: OutlineInputBorder(
+                gapPadding: 0.0,
+                borderRadius: BorderRadius.circular(22),
               ),
             ),
+          ),
+          SizedBox(height: 20.h),
+          ElevatedButton(
+            child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+                child: Text(
+                  "Post",
+                  style: TextStyle(fontSize: 20.sp),
+                )),
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(secondaryColor),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                ))),
+            onPressed: () {},
           ),
         ],
       ),
@@ -90,18 +91,4 @@ class PostQuestion extends StatelessWidget {
   }
 }
 
-PreferredSize postQuestionAppBar = PreferredSize(
-    preferredSize: Size.fromHeight(170),
-    child: AppBar(
-      backgroundColor: secondaryColor,
-      flexibleSpace: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Post a question",
-            style: TextStyle(
-                fontSize: 35, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
-    ));
+Text postQuestionAppBar = Text("Post a question");
