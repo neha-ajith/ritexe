@@ -30,20 +30,30 @@ class Profile extends StatelessWidget {
         
         ),
        
-        body: Center(
-            child: Column(
-              children: [
-                //SizedBox(height: 20),
-                 new Text("John Doe",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.0,
-                                      fontFamily: 'sans-serif-light',
-                                      color: Colors.black)),
-                                      
-              ],
-            ),
-
+        body: 
+       
+          Center(
+       child: Row(
+         children: <Widget>[
+           Container(
+             color: Colors.blue,
+             height: 100,
+             width: 100,
+           ),
+           Expanded(
+             child: Container(
+               color: Colors.orange,
+               height: 100,
+             ),
+           ),
+           Container(
+             color: Colors.blue,
+             height: 100,
+             width: 100,
+           ),
+         ],
+       ),
+   
         )
         
     //    body: Center(

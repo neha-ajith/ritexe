@@ -19,7 +19,7 @@ class PostAnswers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+      centerTitle: true,  
         title: Text('Post your answer'),
         backgroundColor: secondaryColor, // appbar color.
         foregroundColor: Colors.white,
