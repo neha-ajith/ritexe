@@ -1,142 +1,94 @@
-import 'package:flutter/material.dart';
-import 'package:ritexe/globals/globals.dart';
-import 'package:ritexe/widgets/question_card.dart';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-class postque extends StatelessWidget {
-  const postque({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ritexe/globals/globals.dart';
+
+class PostQuestion extends StatelessWidget {
+  const PostQuestion({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: primaryColor,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(170),
-        child: AppBar(
-          backgroundColor: secondaryColor,
-          flexibleSpace: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Post a question",
-                style: TextStyle(
-                    fontSize: 35,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 20.h),
+      child: Column(
+        children: [
+          SizedBox(height: 100.h),
+          TextField(
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(),
+              hintText: "Question Title",
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(22),
               ),
-            ],
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(22),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(22),
+              ),
+            ),
           ),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Column(
-          children: [
-            SizedBox(height: 50),
-            //SizedBox(height: 20),
-            //SizedBox(height: 10),
-            Container(
-              decoration: BoxDecoration(
+          SizedBox(height: 20.h),
+          TextField(
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(),
+              hintText: "Question  Description",
+              errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(22),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.05),
-                  ),
-                  BoxShadow(
-                    color: Colors.white,
-                    offset: const Offset(0, 1.6),
-                    blurRadius: 1,
-                    spreadRadius: -1,
-                  ),
-                ],
               ),
-              width: 400,
-              height: 55,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-                child: Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Question Title'),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 30),
-            Container(
-              decoration: BoxDecoration(
+              enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(22),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.05),
-                  ),
-                  BoxShadow(
-                    color: Colors.white,
-                    offset: const Offset(0, 1.6),
-                    blurRadius: 1,
-                    spreadRadius: -1,
-                  ),
-                ],
               ),
-              width: 400,
-              height: 200,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-                child: Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Question Description'),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 30),
-            Container(
-              decoration: BoxDecoration(
+              focusedBorder: OutlineInputBorder(
+                gapPadding: 0.0,
                 borderRadius: BorderRadius.circular(22),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.05),
-                  ),
-                  BoxShadow(
-                    color: Colors.white,
-                    offset: const Offset(0, 1.6),
-                    blurRadius: 1,
-                    spreadRadius: -1,
-                  ),
-                ],
-              ),
-              width: 400,
-              height: 55,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-                child: Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Tags'),
-                  ),
-                ),
               ),
             ),
-            SizedBox(height: 30),
-            ElevatedButton(
-              child: Padding(
-                  padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
-                  child: Text(
-                    "Post",
-                    style: TextStyle(fontSize: 22),
-                  )),
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(secondaryColor),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                  ))),
-              onPressed: () {},
+          ),
+          SizedBox(height: 20.h),
+          TextField(
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(),
+              hintText: "Tags",
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(22),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(22),
+              ),
+              focusedBorder: OutlineInputBorder(
+                gapPadding: 0.0,
+                borderRadius: BorderRadius.circular(22),
+              ),
             ),
-          ],
-        ),
+          ),
+          SizedBox(height: 20.h),
+          ElevatedButton(
+            child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+                child: Text(
+                  "Post",
+                  style: TextStyle(fontSize: 20.sp),
+                )),
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(secondaryColor),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                ))),
+            onPressed: () {},
+          ),
+        ],
       ),
     );
   }
 }
+
+Text postQuestionAppBar = Text("Post a question");

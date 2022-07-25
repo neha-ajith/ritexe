@@ -1,40 +1,25 @@
-// ignore: unused_import
-// ignore_for_file: unused_import
-
-import 'dart:ui';
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-
-import 'package:ritexe/screens/feed.dart';
-
-import 'package:ritexe/screens/postanswers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritexe/globals/globals.dart';
-import 'package:ritexe/widgets/question_card.dart';
-
-import '../widgets/sell_card.dart';
 
 class PostAnswers extends StatelessWidget {
+  const PostAnswers({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         title: Text('Post your answer'),
-        backgroundColor: secondaryColor, // appbar color.
+        backgroundColor: secondaryColor,
         foregroundColor: Colors.white,
-        // appbar text color.
       ),
-
-      /* title:Center(
-              
-              child: Container(
-                
-              ),
-            ),*/
       backgroundColor: primaryColor,
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
         child: Column(
           children: [
             Text(
@@ -43,56 +28,56 @@ class PostAnswers extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.white)),
-            const Divider(
+            Divider(
               color: Colors.black,
               height: 40,
               thickness: 1,
               indent: 0,
               endIndent: 0,
             ),
-            TextField(
-              minLines: null,
-              maxLines: null,
-              expands: true,
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Color.fromARGB(255, 253, 252, 252),
-                contentPadding: EdgeInsets.symmetric(vertical: 80.0),
-                border: OutlineInputBorder(),
-                hintText: 'Post your answer....',
-                hintStyle: TextStyle(
-                  fontSize: 20,
-                ),
-                errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(22),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(22),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  gapPadding: 0.0,
-                  borderRadius: BorderRadius.circular(22),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(22),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(.05),
+                  ),
+                  BoxShadow(
+                    color: Colors.white,
+                    offset: const Offset(0, 1.6),
+                    blurRadius: 1,
+                    spreadRadius: -1,
+                  ),
+                ],
+              ),
+              width: double.infinity,
+              height: 180.h,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+                child: Expanded(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none, hintText: 'Your answer...'),
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: 50),
-            TextButton(
+            SizedBox(height: 30.h),
+            ElevatedButton(
+              child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+                  child: Text(
+                    "Post",
+                    style: TextStyle(fontSize: 20.sp),
+                  )),
               style: ButtonStyle(
-                foregroundColor:
-                    MaterialStateProperty.all<Color>(secondaryColor),
-              ),
+                  backgroundColor: MaterialStateProperty.all(secondaryColor),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ))),
               onPressed: () {},
-              //  shape: new RoundedRectangleBorder(
-              // borderRadius: new BorderRadius.circular(30.0),/  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-              child: Text(
-                "Post",
-                style: TextStyle(
-                  backgroundColor: secondaryColor,
-                  fontSize: 20,
-                  color: Colors.white,
-                ),
-              ),
             ),
           ],
         ),

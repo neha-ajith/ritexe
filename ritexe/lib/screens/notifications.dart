@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ritexe/globals/globals.dart';
 import 'package:ritexe/widgets/notification_card.dart';
 
 class Notifications extends StatelessWidget {
@@ -10,24 +9,18 @@ class Notifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: primaryColor,
-        appBar: AppBar(
-          backgroundColor: secondaryColor,
-          title: Text("Notifications"),
-          leading: BackButton(color: Colors.white),
-        ),
-        body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: Column(children: [
-              NotificationCard(
-                  title: "you have a new buyer!", date: "15 Jun, 2022"),
-              NotificationCard(
-                  title: "you have a new buyer!", date: "15 Jun, 2022"),
-              NotificationCard(
-                  title: "you have a new buyer!", date: "15 Jun, 2022"),
-              NotificationCard(
-                  title: "you have a new buyer!", date: "15 Jun, 2022")
-            ])));
+    return Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        child: Column(children: [
+          NotificationCard(
+              title: "you have a new buyer!", date: "15 Jun, 2022"),
+          NotificationCard(
+              title: "you have a new buyer!", date: "15 Jun, 2022"),
+          NotificationCard(
+              title: "you have a new buyer!", date: "15 Jun, 2022"),
+          NotificationCard(title: "you have a new buyer!", date: "15 Jun, 2022")
+        ]));
   }
 }
+
+Text notificationsAppBar = Text("Notifications");
