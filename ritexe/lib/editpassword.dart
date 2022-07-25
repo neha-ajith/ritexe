@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ritexe/globals/globals.dart';
 import 'package:ritexe/widgets/question_card.dart';
 
-class postanitem extends StatelessWidget {
-  const postanitem({Key? key}) : super(key: key);
+class editpassword extends StatelessWidget {
+  const editpassword({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class postanitem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Post an item",
+              "Edit Password",
               style: TextStyle(
                   fontSize: 35,
                   color: Colors.white,
@@ -25,10 +25,10 @@ class postanitem extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            SizedBox(height: 50),
+            SizedBox(height: 220),
             //SizedBox(height: 20),
             //SizedBox(height: 10),
             Container(
@@ -53,40 +53,13 @@ class postanitem extends StatelessWidget {
                 child: Expanded(
                   child: TextFormField(
                     decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Item Name'),
+                        border: InputBorder.none,
+                        hintText: 'Enter new password'),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 30),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(22),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.05),
-                  ),
-                  BoxShadow(
-                    color: Colors.white,
-                    offset: const Offset(0, 1.6),
-                    blurRadius: 1,
-                    spreadRadius: -1,
-                  ),
-                ],
-              ),
-              width: 400,
-              height: 200,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-                child: Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Description'),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(22),
@@ -109,45 +82,18 @@ class postanitem extends StatelessWidget {
                 child: Expanded(
                   child: TextFormField(
                     decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Quantity'),
+                        border: InputBorder.none,
+                        hintText: 'Confirm new password'),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 30),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(22),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.05),
-                  ),
-                  BoxShadow(
-                    color: Colors.white,
-                    offset: const Offset(0, 1.6),
-                    blurRadius: 1,
-                    spreadRadius: -1,
-                  ),
-                ],
-              ),
-              width: 400,
-              height: 55,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-                child: Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Contact'),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 30),
+            SizedBox(height: 45),
             ElevatedButton(
               child: Padding(
                   padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
                   child: Text(
-                    "Post",
+                    "Edit",
                     style: TextStyle(fontSize: 22),
                   )),
               style: ButtonStyle(

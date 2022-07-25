@@ -7,8 +7,7 @@ class postanitemtemp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-  //final quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      //final quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
       backgroundColor: primaryColor,
       appBar: AppBar(
         backgroundColor: secondaryColor,

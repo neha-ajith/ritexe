@@ -1,10 +1,17 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:ritexe/editpassword.dart';
+import 'package:ritexe/screens/dropdown.dart';
 import 'package:ritexe/screens/feed.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ritexe/screens/postanitem.dart';
+import 'package:ritexe/screens/postitemtemp.dart';
+import 'package:ritexe/screens/signin.dart';
+import 'package:ritexe/screens/signup.dart';
 
 void main() {
+  var items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   runApp(const MyApp());
 }
 
@@ -27,7 +34,7 @@ class MyApp extends StatelessWidget {
                   child: widget!,
                 );
               },
-              home: Feed(),
+              home: editpassword(),
             ));
   }
 }
