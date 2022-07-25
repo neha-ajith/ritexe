@@ -1,9 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:ritexe/globals/globals.dart';
-import 'package:ritexe/widgets/question_card.dart';
+// ignore_for_file: prefer_const_constructors
 
-class signup extends StatelessWidget {
-  const signup({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ritexe/globals/globals.dart';
+import 'package:ritexe/screens/feed.dart';
+import 'package:ritexe/screens/signin.dart';
+
+class SignUp extends StatelessWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +16,15 @@ class signup extends StatelessWidget {
         width: double.infinity,
         decoration: backgroundImage,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: EdgeInsets.symmetric(horizontal: 15.w),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 60,
+                height: 80.h,
               ),
               Container(
-                height: 60,
-                width: 300,
+                height: 60.h,
+                width: 300.w,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/logo.png'),
@@ -29,22 +32,18 @@ class signup extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 57,
-              ),
+              SizedBox(height: 20.h),
               Container(
                 child: Text(
                   'Sign Up',
                   style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 35.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              SizedBox(
-                height: 48,
-              ),
+              SizedBox(height: 20.h),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(22),
@@ -61,9 +60,10 @@ class signup extends StatelessWidget {
                   ],
                 ),
                 width: double.infinity,
-                height: 55,
+                height: 50.h,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
                   child: Expanded(
                     child: TextField(
                       decoration: InputDecoration(
@@ -74,9 +74,7 @@ class signup extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 17,
-              ),
+              SizedBox(height: 15.h),
               Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
@@ -93,10 +91,11 @@ class signup extends StatelessWidget {
                     ),
                   ],
                 ),
-                width: 400,
-                height: 55,
+                width: double.infinity,
+                height: 50.h,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
                   child: Expanded(
                     child: TextField(
                       decoration: InputDecoration(
@@ -105,9 +104,7 @@ class signup extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 13,
-              ),
+              SizedBox(height: 15.h),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(22),
@@ -124,9 +121,10 @@ class signup extends StatelessWidget {
                   ],
                 ),
                 width: double.infinity,
-                height: 55,
+                height: 50.h,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
                   child: Expanded(
                     child: TextField(
                       decoration: InputDecoration(
@@ -137,9 +135,7 @@ class signup extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 15.h),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(22),
@@ -156,9 +152,10 @@ class signup extends StatelessWidget {
                   ],
                 ),
                 width: double.infinity,
-                height: 55,
+                height: 50.h,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
                   child: Expanded(
                     child: TextField(
                       decoration: InputDecoration(
@@ -169,15 +166,13 @@ class signup extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 50,
-              ),
+              SizedBox(height: 30.h),
               ElevatedButton(
                 child: Padding(
                     padding: EdgeInsets.fromLTRB(25, 15, 25, 15),
                     child: Text(
                       "Sign Up",
-                      style: TextStyle(fontSize: 22),
+                      style: TextStyle(fontSize: 18.sp),
                     )),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(secondaryColor),
@@ -185,11 +180,14 @@ class signup extends StatelessWidget {
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),
                     ))),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Feed()),
+                  );
+                },
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 18.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -197,7 +195,7 @@ class signup extends StatelessWidget {
                     child: Text(
                       'Existing User?',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 18.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
@@ -209,17 +207,22 @@ class signup extends StatelessWidget {
                         style: TextStyle(
                           decoration: TextDecoration.underline,
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onPressed: () {}),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignIn()),
+                        );
+                      }),
                 ],
               ),
             ],
           ),
         ),
-        //backgroundColor: primaryColor,
       ),
     );
   }

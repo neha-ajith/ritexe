@@ -1,4 +1,4 @@
-import 'package:dropdown_textfield/dropdown_textfield.dart';
+// import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:ritexe/globals/globals.dart';
 import 'package:ritexe/widgets/question_card.dart';
@@ -47,9 +47,10 @@ class dropdown extends StatelessWidget {
             //   },
             // )
             SizedBox(height: 20),
-            Text(selectcity,style: TextStyle(fontSize: 20
-            ),
-            textAlign: TextAlign.center,
+            Text(
+              selectcity,
+              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
             )
           ],
         ),
@@ -97,5 +98,5 @@ class dropdown extends StatelessWidget {
 }
 
 String selectcity = "";
-final citiesselected = SingleValueDropDownController();
+// final citiesselected = SingleValueDropDownController();
 List<String> cities = ['1', '2', '3', '4', '5'];

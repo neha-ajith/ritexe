@@ -1,9 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:ritexe/globals/globals.dart';
-import 'package:ritexe/widgets/question_card.dart';
+// ignore_for_file: prefer_const_constructors
 
-class signin extends StatelessWidget {
-  const signin({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ritexe/globals/globals.dart';
+import 'package:ritexe/screens/feed.dart';
+import 'package:ritexe/screens/signup.dart';
+
+class SignIn extends StatelessWidget {
+  const SignIn({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +18,13 @@ class signin extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 185,
+                height: 138.h,
               ),
               Container(
-                height: 60,
-                width: 300,
+                height: 60.h,
+                width: 300.w,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/logo.png'),
@@ -29,22 +32,18 @@ class signin extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 27,
-              ),
+              SizedBox(height: 25.h),
               Container(
                 child: Text(
                   'Sign In',
                   style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 35.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 20.h),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(22),
@@ -61,9 +60,10 @@ class signin extends StatelessWidget {
                   ],
                 ),
                 width: double.infinity,
-                height: 55,
+                height: 50.h,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
                   child: Expanded(
                     child: TextField(
                       decoration: InputDecoration(
@@ -74,9 +74,7 @@ class signin extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 18.h),
               Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
@@ -93,10 +91,11 @@ class signin extends StatelessWidget {
                     ),
                   ],
                 ),
-                width: 400,
-                height: 55,
+                width: double.infinity,
+                height: 50.h,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
                   child: Expanded(
                     child: TextField(
                       decoration: InputDecoration(
@@ -105,15 +104,13 @@ class signin extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 50,
-              ),
+              SizedBox(height: 35.h),
               ElevatedButton(
                 child: Padding(
                     padding: EdgeInsets.fromLTRB(25, 15, 25, 15),
                     child: Text(
                       "Sign In",
-                      style: TextStyle(fontSize: 22),
+                      style: TextStyle(fontSize: 20.sp),
                     )),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(secondaryColor),
@@ -121,11 +118,14 @@ class signin extends StatelessWidget {
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),
                     ))),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Feed()),
+                  );
+                },
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -133,7 +133,7 @@ class signin extends StatelessWidget {
                     child: Text(
                       'New here?',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
@@ -145,17 +145,22 @@ class signin extends StatelessWidget {
                         style: TextStyle(
                           decoration: TextDecoration.underline,
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onPressed: () {}),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUp()),
+                        );
+                      }),
                 ],
               ),
             ],
           ),
         ),
-        //backgroundColor: primaryColor,
       ),
     );
   }

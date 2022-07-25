@@ -7,12 +7,6 @@ import 'package:ritexe/globals/globals.dart';
 class PostItem extends StatelessWidget {
   const PostItem({Key? key}) : super(key: key);
 
-<<<<<<< HEAD
-class postanitem extends StatelessWidget {
-  const postanitem({Key? key}) : super(key: key);
-
-=======
->>>>>>> c7648b3249d400c1c186e487ea204491bcb2c864
   @override
   Widget build(BuildContext context) {
     return Padding(

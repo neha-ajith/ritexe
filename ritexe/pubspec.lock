@@ -50,20 +50,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  dropdown_textfield:
-    dependency: "direct main"
-    description:
-      name: dropdown_textfield
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
-  equatable:
-    dependency: transitive
-    description:
-      name: equatable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -206,9 +192,4 @@ packages:
     source: hosted
     version: "2.1.1"
 sdks:
-<<<<<<< HEAD
-  dart: ">=2.17.0-0 <3.0.0"
-  flutter: ">=1.17.0"
-=======
   dart: ">=2.16.2 <3.0.0"
->>>>>>> c7648b3249d400c1c186e487ea204491bcb2c864
