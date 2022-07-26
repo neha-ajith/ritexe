@@ -1,13 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:ritexe/editpassword.dart';
-import 'package:ritexe/screens/dropdown.dart';
-import 'package:ritexe/screens/feed.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ritexe/screens/postanitem.dart';
-import 'package:ritexe/screens/postitemtemp.dart';
-import 'package:ritexe/screens/signin.dart';
 import 'package:ritexe/screens/signup.dart';
 
 void main() {

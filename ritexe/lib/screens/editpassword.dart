@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:ritexe/globals/globals.dart';
-import 'package:ritexe/widgets/question_card.dart';
+// ignore_for_file: prefer_const_constructors
 
-class editpassword extends StatelessWidget {
-  const editpassword({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ritexe/globals/globals.dart';
+
+class EditPassword extends StatelessWidget {
+  const EditPassword({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,26 +13,13 @@ class editpassword extends StatelessWidget {
       backgroundColor: primaryColor,
       appBar: AppBar(
         backgroundColor: secondaryColor,
-        flexibleSpace: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Edit Password",
-              style: TextStyle(
-                  fontSize: 35,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
+        title: Text("Edit Password"),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
           children: [
-            SizedBox(height: 220),
-            //SizedBox(height: 20),
-            //SizedBox(height: 10),
+            SizedBox(height: 160.h),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(22),
@@ -46,10 +35,10 @@ class editpassword extends StatelessWidget {
                   ),
                 ],
               ),
-              width: 400,
-              height: 55,
+              width: double.infinity,
+              height: 50.h,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.h),
                 child: Expanded(
                   child: TextFormField(
                     decoration: InputDecoration(
@@ -59,7 +48,7 @@ class editpassword extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 18.h),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(22),
@@ -75,10 +64,10 @@ class editpassword extends StatelessWidget {
                   ),
                 ],
               ),
-              width: 400,
-              height: 55,
+              width: double.infinity,
+              height: 50.h,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.h),
                 child: Expanded(
                   child: TextFormField(
                     decoration: InputDecoration(
@@ -88,13 +77,13 @@ class editpassword extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 45),
+            SizedBox(height: 35.h),
             ElevatedButton(
               child: Padding(
                   padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
                   child: Text(
                     "Edit",
-                    style: TextStyle(fontSize: 22),
+                    style: TextStyle(fontSize: 20.sp),
                   )),
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(secondaryColor),

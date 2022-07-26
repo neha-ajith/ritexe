@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SellCard extends StatelessWidget {
+class MySellCard extends StatelessWidget {
   final String title, qty, date, username;
-  const SellCard(
+  const MySellCard(
       {Key? key,
       required this.title,
       required this.qty,
@@ -74,27 +74,12 @@ class SellCard extends StatelessWidget {
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 15.sp),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Posted by: $username",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12.sp,
-                            color: Color.fromARGB(255, 104, 103, 103)),
-                      ),
-                      TextButton(
-                          onPressed: () {},
-                          style: TextButton.styleFrom(
-                              padding: EdgeInsets.zero,
-                              minimumSize: Size(50, 30),
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                              alignment: Alignment.centerLeft),
-                          child: Text("Notify seller",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 77, 114, 158))))
-                    ],
+                  Text(
+                    "Posted by: $username",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12.sp,
+                        color: Color.fromARGB(255, 104, 103, 103)),
                   ),
                 ],
               ),

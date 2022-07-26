@@ -1,6 +1,4 @@
 from fastapi import FastAPI
-# from routes.user import user
-# from routes.question import question
 from routes.index import user,question,answer,item
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()

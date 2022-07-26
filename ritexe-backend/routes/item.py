@@ -9,6 +9,10 @@ item = APIRouter()
 def fetch_items():
     return conn.execute(items.select()).fetchall()
 
+@item.get('/items/{id}')
+def fetch_user_items(id:int):
+    return conn.execute(items.select().where(items.c.user_id == id)).fetchall()
+
 @item.post('/items/')
 def post_item(item: Item):
     return conn.execute(items.insert().values(name=item.name,quantity=item.quantity,date=item.date,user_id=item.user_id))

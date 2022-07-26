@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritexe/globals/globals.dart';
 import 'package:ritexe/models/question_thumbnail.dart';
+import 'package:ritexe/screens/myprofile.dart';
 import 'package:ritexe/screens/notifications.dart';
-import 'package:ritexe/screens/postque.dart';
+import 'package:ritexe/screens/postquestion.dart';
 import 'package:ritexe/screens/sell.dart';
 import 'package:ritexe/widgets/question_card.dart';
 import 'package:http/http.dart' as http;
@@ -124,12 +125,20 @@ class _QuestionsState extends State<Questions> {
 Row questionAppBar(BuildContext context) {
   return Row(
     children: [
-      CircleAvatar(
-        child: Icon(
-          Icons.person,
-          color: Colors.white,
+      IconButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const Profile()),
+          );
+        },
+        icon: CircleAvatar(
+          child: Icon(
+            Icons.person,
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.black,
         ),
-        backgroundColor: Colors.black,
       ),
       SizedBox(width: 20.w),
       Container(
@@ -147,7 +156,7 @@ Row questionAppBar(BuildContext context) {
             ),
           ],
         ),
-        width: 220.w,
+        width: 210.w,
         height: 35.h,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w),

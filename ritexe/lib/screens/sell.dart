@@ -1,12 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:ritexe/globals/globals.dart';
+import 'package:ritexe/models/item.dart';
 import 'package:ritexe/screens/feed.dart';
 import 'package:ritexe/screens/notifications.dart';
 import 'package:ritexe/screens/postanitem.dart';
 import 'package:ritexe/widgets/sell_card.dart';
+import 'package:http/http.dart' as http;
 
 class Sell extends StatefulWidget {
   const Sell({Key? key}) : super(key: key);
@@ -15,12 +19,36 @@ class Sell extends StatefulWidget {
   State<Sell> createState() => _SellState();
 }
 
+Future fetchItems() async {
+  var itemResponse = await http.get(Uri.parse("http://10.0.2.2:8000/items/"));
+  var itemThumbnails = [];
+
+  var data = jsonDecode(itemResponse.body);
+  for (var i in data) {
+    var userResponse =
+        await http.get(Uri.parse("http://10.0.2.2:8000/users/${i['user_id']}"));
+    var username = jsonDecode(userResponse.body)[0]['username'];
+    itemThumbnails.add(Item(
+        title: i['name'],
+        username: username,
+        date: DateTime.parse(i['date']),
+        quantity: i['quantity']));
+  }
+  return itemThumbnails;
+}
+
 class _SellState extends State<Sell> {
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchItems();
   }
 
   @override
@@ -74,21 +102,30 @@ class SellFeed extends StatefulWidget {
 class _SellFeedState extends State<SellFeed> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w),
-        child: Column(children: [
-          SellCard(
-              title: "set square available", qty: "1", date: "15 June,2022"),
-          SellCard(
-              title: "set square available", qty: "1", date: "15 June,2022"),
-          SellCard(
-              title: "set square available", qty: "1", date: "15 June,2022"),
-          SellCard(
-              title: "set square available", qty: "1", date: "15 June,2022"),
-          SellCard(
-              title: "set square available", qty: "1", date: "15 June,2022")
-        ]),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 8.w),
+      child: FutureBuilder(
+        future: fetchItems(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.data == null) {
+            return Center(
+                child: CircularProgressIndicator(
+              color: secondaryColor,
+            ));
+          } else {
+            return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return SellCard(
+                      title: snapshot.data[index].title,
+                      username: snapshot.data[index].username,
+                      date: DateFormat("dd MMM yyyy")
+                          .format(snapshot.data[index].date)
+                          .toString(),
+                      qty: snapshot.data[index].quantity.toString());
+                });
+          }
+        },
       ),
     );
   }

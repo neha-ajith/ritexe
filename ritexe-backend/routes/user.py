@@ -9,6 +9,10 @@ user = APIRouter()
 def fetch_users():
     return conn.execute(users.select()).fetchall()
 
+@user.get('/users/{id}')
+def fetch_one_user(id:int):
+    return conn.execute(users.select().where(users.c.id==id)).fetchall()
+
 @user.post('/users/')
 def post_user(user: User):
     return conn.execute(users.insert().values(username=user.username,name=user.name,email=user.email,password=user.password,upvote=user.upVotes))
