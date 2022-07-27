@@ -33,12 +33,10 @@ class PostQuestion extends StatelessWidget {
             height: 50.h,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-              child: Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Question Title',
-                  ),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Question Title',
                 ),
               ),
             ),
@@ -63,12 +61,10 @@ class PostQuestion extends StatelessWidget {
             height: 50.h,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-              child: Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Question Description',
-                  ),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Question Description',
                 ),
               ),
             ),
@@ -93,12 +89,10 @@ class PostQuestion extends StatelessWidget {
             height: 50.h,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-              child: Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Tags',
-                  ),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Tags',
                 ),
               ),
             ),

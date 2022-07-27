@@ -32,11 +32,9 @@ class PostItem extends StatelessWidget {
             height: 50.h,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 5.h),
-              child: Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: InputBorder.none, hintText: 'Item Name'),
-                ),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: InputBorder.none, hintText: 'Item Name'),
               ),
             ),
           ),
@@ -60,11 +58,9 @@ class PostItem extends StatelessWidget {
             height: 180.h,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.h),
-              child: Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: InputBorder.none, hintText: 'Description'),
-                ),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: InputBorder.none, hintText: 'Description'),
               ),
             ),
           ),
@@ -88,11 +84,9 @@ class PostItem extends StatelessWidget {
             height: 50.h,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.h),
-              child: Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: InputBorder.none, hintText: 'Quantity'),
-                ),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: InputBorder.none, hintText: 'Quantity'),
               ),
             ),
           ),
@@ -116,11 +110,9 @@ class PostItem extends StatelessWidget {
             height: 50.h,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.h),
-              child: Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: InputBorder.none, hintText: 'Contact'),
-                ),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: InputBorder.none, hintText: 'Contact'),
               ),
             ),
           ),

@@ -64,12 +64,10 @@ class SignUp extends StatelessWidget {
                 child: Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-                  child: Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Full Name',
-                      ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Full Name',
                     ),
                   ),
                 ),
@@ -96,10 +94,37 @@ class SignUp extends StatelessWidget {
                 child: Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-                  child: Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                          border: InputBorder.none, hintText: 'Email'),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none, hintText: 'Email'),
+                  ),
+                ),
+              ),
+              SizedBox(height: 15.h),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(22),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.05),
+                    ),
+                    BoxShadow(
+                      color: Colors.white,
+                      offset: const Offset(0, 1.6),
+                      blurRadius: 1,
+                      spreadRadius: -1,
+                    ),
+                  ],
+                ),
+                width: double.infinity,
+                height: 50.h,
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Username',
                     ),
                   ),
                 ),
@@ -125,43 +150,10 @@ class SignUp extends StatelessWidget {
                 child: Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-                  child: Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Username',
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 15.h),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(22),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(.05),
-                    ),
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: const Offset(0, 1.6),
-                      blurRadius: 1,
-                      spreadRadius: -1,
-                    ),
-                  ],
-                ),
-                width: double.infinity,
-                height: 50.h,
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-                  child: Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Password',
-                      ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Password',
                     ),
                   ),
                 ),

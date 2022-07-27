@@ -64,12 +64,10 @@ class SignIn extends StatelessWidget {
                 child: Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-                  child: Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Username/Email',
-                      ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Username/Email',
                     ),
                   ),
                 ),
@@ -96,11 +94,9 @@ class SignIn extends StatelessWidget {
                 child: Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-                  child: Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                          border: InputBorder.none, hintText: 'Password'),
-                    ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none, hintText: 'Password'),
                   ),
                 ),
               ),

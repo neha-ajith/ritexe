@@ -39,12 +39,9 @@ class EditPassword extends StatelessWidget {
               height: 50.h,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.h),
-                child: Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Enter new password'),
-                  ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      border: InputBorder.none, hintText: 'Enter new password'),
                 ),
               ),
             ),
@@ -68,12 +65,10 @@ class EditPassword extends StatelessWidget {
               height: 50.h,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.h),
-                child: Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Confirm new password'),
-                  ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Confirm new password'),
                 ),
               ),
             ),

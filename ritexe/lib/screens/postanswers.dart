@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritexe/globals/globals.dart';
 
-class PostAnswers extends StatelessWidget {
+class PostAnswers extends StatefulWidget {
   const PostAnswers({Key? key}) : super(key: key);
 
+  @override
+  State<PostAnswers> createState() => _PostAnswersState();
+}
+
+class _PostAnswersState extends State<PostAnswers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

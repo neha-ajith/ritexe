@@ -7,6 +7,7 @@ import 'package:ritexe/models/question_thumbnail.dart';
 import 'package:ritexe/screens/myprofile.dart';
 import 'package:ritexe/screens/notifications.dart';
 import 'package:ritexe/screens/postquestion.dart';
+import 'package:ritexe/screens/question_page.dart';
 import 'package:ritexe/screens/sell.dart';
 import 'package:ritexe/widgets/question_card.dart';
 import 'package:http/http.dart' as http;
@@ -30,6 +31,7 @@ Future fetchQuestion() async {
         await http.get(Uri.parse("http://10.0.2.2:8000/answers/${q['qs_id']}"));
     int num = jsonDecode(answerResponse.body).length;
     questionThumbnails.add(QuestionThumbNail(
+      id: q['qs_id'],
       title: q['qs_title'],
       noOfAnswers: num,
     ));
@@ -111,9 +113,19 @@ class _QuestionsState extends State<Questions> {
             return ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return QuestionCard(
-                      title: snapshot.data[index].title,
-                      noOfAnswers: snapshot.data[index].noOfAnswers.toString());
+                  return GestureDetector(
+                    onTap: (() {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  QuestionPage(id: snapshot.data[index].id)));
+                    }),
+                    child: QuestionCard(
+                        title: snapshot.data[index].title,
+                        noOfAnswers:
+                            snapshot.data[index].noOfAnswers.toString()),
+                  );
                 });
           }
         },

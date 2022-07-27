@@ -26,6 +26,7 @@ Future fetchUserQuestion() async {
         await http.get(Uri.parse("http://10.0.2.2:8000/answers/${q['qs_id']}"));
     int num = jsonDecode(answerResponse.body).length;
     questionThumbnails.add(QuestionThumbNail(
+      id: q['qs_id'],
       title: q['qs_title'],
       noOfAnswers: num,
     ));

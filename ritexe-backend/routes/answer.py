@@ -13,6 +13,10 @@ def fetch_answers():
 def fetch_those_answers(qsId: int):
     return conn.execute(answers.select().where(answers.c.qs_id==qsId)).fetchall()
 
+@answer.get('/answers/users/{userId}')
+def fetch_user_answers(userId: int):
+    return conn.execute(answers.select().where(answers.c.user_id==userId)).fetchall()
+
 @answer.post('/answers/')
 def post_answer(answer: Answer):
     return conn.execute(answers.insert().values(ans=answer.ans,upvote=answer.upVote,downvote=answer.downVote,date=answer.date,qs_id=answer.qs_id,user_id=answer.user_id))
