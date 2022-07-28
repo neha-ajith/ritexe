@@ -7,7 +7,7 @@ class ReportCard extends StatelessWidget {
   final String title, date, username;
   
   var report;
- const ReportCard(
+ ReportCard(
       {Key? key,
       required this.title,
       required this.date,
