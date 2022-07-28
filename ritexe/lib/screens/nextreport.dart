@@ -6,28 +6,29 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:ritexe/globals/globals.dart';
 // ignore: unused_import
-import 'package:ritexe/models/report.dart';
+import 'package:ritexe/models/nextreport.dart';
 
 import 'package:http/http.dart' as http;
 
 import '../widgets/report_card.dart';
 import '../widgets/sell_card.dart';
 
-class Report extends StatefulWidget {
-  const Report({Key? key}) : super(key: key);
+class NextReport extends StatefulWidget {
+  const NextReport({Key? key}) : super(key: key);
 
   @override
-  State<Report> createState() => _ReportState();
+  State<NextReport> createState() => _ReportState();
 }
 
-class _ReportState extends State<Report> {
+class _ReportState extends State<NextReport> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: primaryColor,
         appBar: AppBar(
           backgroundColor: secondaryColor,
-          title: Text("Reported answers"),
+          title: Text("Report"),
+          centerTitle: true,
           leading: BackButton(color: Colors.white),
         ),
         body: Padding(
@@ -93,21 +94,8 @@ class _ReportState extends State<Report> {
                           indent: 0,
                           endIndent: 0),
                     ]),
-
-                    //  Column(
-                    //           children: [
-                    //             Row(children: [
-                    //               Text("4 Answers",
-                    //                   style: TextStyle(
-                    //                       fontWeight: FontWeight.bold,
-                    //                       fontSize: 16.sp)),
-                    //             ]),
-                    //             SizedBox(height: 10.h),
-
-                    //           ],
-                    //         ),
                     SizedBox(
-                      height: 20,
+                      height: 13,
                     ),
                     Container(
                       width: double.infinity,
@@ -139,38 +127,38 @@ class _ReportState extends State<Report> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 35,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Why are you Reporting?",
+                              style: TextStyle(
+                                  fontSize: 20.sp, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        //add a drop down...............
+                      ],
+                    ),
                   ],
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 40,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(width: 75.h),
                   ElevatedButton(
                     child: Padding(
                         padding: EdgeInsets.fromLTRB(2, 5, 2, 5),
                         child: Text(
-                          "Delete",
-                          style: TextStyle(fontSize: 15.sp),
-                        )),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(secondaryColor),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ))),
-                    onPressed: () {},
-                  ),
-                  SizedBox(width: 20),
-                  ElevatedButton(
-                    child: Padding(
-                        padding: EdgeInsets.fromLTRB(2, 5, 2, 5),
-                        child: Text(
-                          "Ignore this",
+                          "Report",
                           style: TextStyle(fontSize: 15.sp),
                         )),
                     style: ButtonStyle(
