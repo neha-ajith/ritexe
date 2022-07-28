@@ -3,9 +3,9 @@ class Answer {
   final String ans;
   Answer(
       {required this.ans,
-      required this.ansId,
-      required this.downVote,
+      this.ansId = 0,
+      this.downVote = 0,
       required this.qsId,
-      required this.upVote,
+      this.upVote = 0,
       required this.userId});
 }

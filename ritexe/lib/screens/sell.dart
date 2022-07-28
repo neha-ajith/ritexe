@@ -60,6 +60,7 @@ class _SellState extends State<Sell> {
       notificationsAppBar
     ];
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: secondaryColor,
         title: appBars.elementAt(_selectedIndex),

@@ -1,6 +1,5 @@
 class Question {
   final int qsId;
   final String qsTitle, qsDescription;
-  Question(
-      {required this.qsId, required this.qsTitle, required this.qsDescription});
+  Question({this.qsId = 0, required this.qsTitle, required this.qsDescription});
 }

@@ -59,11 +59,9 @@ class _PostAnswersState extends State<PostAnswers> {
               height: 180.h,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-                child: Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Your answer...'),
-                  ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      border: InputBorder.none, hintText: 'Your answer...'),
                 ),
               ),
             ),
