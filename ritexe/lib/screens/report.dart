@@ -17,6 +17,11 @@ class Report extends StatefulWidget {
   const Report({Key? key}) : super(key: key);
 
   @override
+  State<Report> createState() => _ReportState();
+}
+
+class _ReportState extends State<Report> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColor,
@@ -28,7 +33,8 @@ class Report extends StatefulWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.w),
         child: Column(
-          children: [ Padding(
+          children: [
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 14),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,7 +53,6 @@ class Report extends StatefulWidget {
                               fontSize: 16.sp),
                         ),
                       ),
-                      
                     ],
                   ),
                   SizedBox(
@@ -56,40 +61,38 @@ class Report extends StatefulWidget {
                   Row(
                     children: [
                       ElevatedButton(
-                              child: Padding(
-                                  padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
-                                  child: Text(
-                                    "Report",
-                                    style: TextStyle(fontSize: 20.sp),
-                                  )),
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(secondaryColor),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ))),
-                              onPressed: () {},
-                            ),
-                            //SizedBox(height: 5.h),
-                            ElevatedButton(
-                              child: Padding(
-                                  padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
-                                  child: Text(
-                                    "Ignore this",
-                                    style: TextStyle(fontSize: 20.sp),
-                                  )),
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(secondaryColor),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ))),
-                              onPressed: () {},
-                            ),
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
+                            child: Text(
+                              "Report",
+                              style: TextStyle(fontSize: 20.sp),
+                            )),
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(secondaryColor),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ))),
+                        onPressed: () {},
+                      ),
+                      //SizedBox(height: 5.h),
+                      ElevatedButton(
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
+                            child: Text(
+                              "Ignore this",
+                              style: TextStyle(fontSize: 20.sp),
+                            )),
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(secondaryColor),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ))),
+                        onPressed: () {},
+                      ),
                     ],
                   ),
                 ],
@@ -99,11 +102,5 @@ class Report extends StatefulWidget {
         ),
       ),
     );
-  }
-  
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
   }
 }

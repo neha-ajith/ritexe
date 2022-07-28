@@ -17,6 +17,11 @@ class ManageReport extends StatefulWidget {
   const ManageReport({Key? key}) : super(key: key);
 
   @override
+  State<ManageReport> createState() => _ManageReportState();
+}
+
+class _ManageReportState extends State<ManageReport> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColor,
@@ -29,19 +34,25 @@ class ManageReport extends StatefulWidget {
         padding: EdgeInsets.symmetric(horizontal: 8.w),
         child: Column(
           children: [
-            
-            ReportCard(title: "This answer has been reported due to abusive words.......", date: "12 Jun, 2022", username: 'john123',),
-             ReportCard(title: "This is inappropriate.......", date: "12 Jun, 2022", username: 'john123',),
-              ReportCard(title: "This is inappropriate.......", date: "12 Jun, 2022", username: 'john123',),
+            ReportCard(
+              title:
+                  "This answer has been reported due to abusive words.......",
+              date: "12 Jun, 2022",
+              username: 'john123',
+            ),
+            ReportCard(
+              title: "This is inappropriate.......",
+              date: "12 Jun, 2022",
+              username: 'john123',
+            ),
+            ReportCard(
+              title: "This is inappropriate.......",
+              date: "12 Jun, 2022",
+              username: 'john123',
+            ),
           ],
         ),
       ),
     );
-  }
-  
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
   }
 }
