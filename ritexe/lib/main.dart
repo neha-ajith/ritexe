@@ -2,10 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ritexe/screens/managereport.dart';
-import 'package:ritexe/screens/posteditems.dart';
-import 'package:ritexe/screens/report.dart';
-// ignore: unused_import
 import 'package:ritexe/screens/signup.dart';
 
 void main() {
@@ -30,7 +26,7 @@ class MyApp extends StatelessWidget {
                   child: widget!,
                 );
               },
-              home: Report(),
+              home: SignUp(),
             ));
   }
 }
