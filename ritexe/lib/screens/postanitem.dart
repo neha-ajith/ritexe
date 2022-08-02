@@ -22,7 +22,7 @@ Future saveItem(Item item) async {
       body: jsonEncode(<String, String>{
         'name': item.title,
         'quantity': item.quantity.toString(),
-        'date': DateTime.now().toString(),
+        'date': item.date.toString(),
         'user_id': userId.toString()
       }));
 }
@@ -30,13 +30,13 @@ Future saveItem(Item item) async {
 class _PostItemState extends State<PostItem> {
   TextEditingController titleController = TextEditingController();
   TextEditingController quanityController = TextEditingController();
-  // TextEditingController tagsController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
       child: Form(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               decoration: BoxDecoration(
@@ -81,32 +81,6 @@ class _PostItemState extends State<PostItem> {
                 ],
               ),
               width: double.infinity,
-              height: 180.h,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.h),
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: InputBorder.none, hintText: 'Description'),
-                ),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(22),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.05),
-                  ),
-                  BoxShadow(
-                    color: Colors.white,
-                    offset: const Offset(0, 1.6),
-                    blurRadius: 1,
-                    spreadRadius: -1,
-                  ),
-                ],
-              ),
-              width: double.infinity,
               height: 50.h,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.h),
@@ -114,32 +88,6 @@ class _PostItemState extends State<PostItem> {
                   controller: quanityController,
                   decoration: InputDecoration(
                       border: InputBorder.none, hintText: 'Quantity'),
-                ),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(22),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.05),
-                  ),
-                  BoxShadow(
-                    color: Colors.white,
-                    offset: const Offset(0, 1.6),
-                    blurRadius: 1,
-                    spreadRadius: -1,
-                  ),
-                ],
-              ),
-              width: double.infinity,
-              height: 50.h,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.h),
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: InputBorder.none, hintText: 'Contact'),
                 ),
               ),
             ),
@@ -161,6 +109,7 @@ class _PostItemState extends State<PostItem> {
               onPressed: () {
                 setState(() {
                   saveItem(Item(
+                      email: "",
                       title: titleController.text,
                       quantity: int.parse(quanityController.text),
                       date: DateTime.now()));

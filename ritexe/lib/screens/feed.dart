@@ -8,6 +8,7 @@ import 'package:ritexe/screens/myprofile.dart';
 import 'package:ritexe/screens/notifications.dart';
 import 'package:ritexe/screens/postquestion.dart';
 import 'package:ritexe/screens/question_page.dart';
+import 'package:ritexe/screens/question_search_results.dart';
 import 'package:ritexe/screens/sell.dart';
 import 'package:ritexe/widgets/question_card.dart';
 import 'package:http/http.dart' as http;
@@ -177,7 +178,17 @@ Row questionAppBar(BuildContext context) {
               Icon(Icons.search, color: Colors.grey),
               SizedBox(width: 10.w),
               Expanded(
-                child: TextFormField(
+                child: TextField(
+                  onSubmitted: (value) {
+                    print(value);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => QuestionSearchResult(
+                                val: value,
+                              )),
+                    );
+                  },
                   decoration: InputDecoration(
                       border: InputBorder.none, hintText: 'Search...'),
                 ),

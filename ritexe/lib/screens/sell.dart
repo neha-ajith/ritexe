@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:ritexe/globals/globals.dart';
 import 'package:ritexe/models/item.dart';
 import 'package:ritexe/screens/feed.dart';
+import 'package:ritexe/screens/item_search_result.dart';
 import 'package:ritexe/screens/notifications.dart';
 import 'package:ritexe/screens/postanitem.dart';
 import 'package:ritexe/widgets/sell_card.dart';
@@ -28,7 +29,10 @@ Future fetchItems() async {
     var userResponse =
         await http.get(Uri.parse("http://10.0.2.2:8000/users/${i['user_id']}"));
     var username = jsonDecode(userResponse.body)[0]['username'];
+    var email = jsonDecode(userResponse.body)[0]['email'];
+
     itemThumbnails.add(Item(
+        email: email,
         title: i['name'],
         username: username,
         date: DateTime.parse(i['date']),
@@ -118,6 +122,7 @@ class _SellFeedState extends State<SellFeed> {
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   return SellCard(
+                      email: snapshot.data[index].email,
                       title: snapshot.data[index].title,
                       username: snapshot.data[index].username,
                       date: DateFormat("dd MMM yyyy")
@@ -158,7 +163,17 @@ Row sellFeedAppBar(context) => Row(
                 Icon(Icons.search, color: Colors.grey),
                 SizedBox(width: 10.w),
                 Expanded(
-                  child: TextFormField(
+                  child: TextField(
+                    onSubmitted: (value) {
+                      print(value);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ItemSearchResult(
+                                  val: value,
+                                )),
+                      );
+                    },
                     decoration: InputDecoration(
                         border: InputBorder.none, hintText: 'Search...'),
                   ),
