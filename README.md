@@ -19,4 +19,4 @@ A discussion forum which allows anyone from RIT to ask doubts and be part of var
 </p>
 
 ## Screen Recording
-https://www.loom.com/share/1d55b70e3deb4d5d84b0a030e4b1df9b
+https://user-images.githubusercontent.com/62176326/182294853-c99e5f0c-b936-4944-9be5-6c3d650b34e1.mp4
