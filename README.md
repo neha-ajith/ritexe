@@ -1,12 +1,22 @@
 # Ritexe: A Discussion Forum for RIT.
 
-S6 CSE Course miniproject.
+A discussion forum which allows anyone from RIT to ask doubts and be part of various discussions or queries, done as a course miniproject.
 
-## Initialise docker:
-```docker run --name mysqldb -d -p 6969:3306 -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=ritexe mysql```
+## Technlogies Used
+<ul>
+<li><a href="https://flutter.dev/">Flutter</a></li>
+<li><a href="https://fastapi.tiangolo.com/">FastAPI</a></li>
+<li><a href="https://www.mysql.com/">MySQL</a></li>
+</ul>
 
-## Start server:
-```uvicorn index:app --reload```
+## Screenshots
+<p>
+<img src="assets/1.png" width="250">
+<img src="assets/3.png" width="250">
+<img src="assets/4.png" width="250">
+<img src="assets/7.png" width="250">
+<img src="assets/6.png" width="250">
+</p>
 
-## Endpoint:
-<a href="http://localhost:8000/docs">http://localhost:8000/docs</a>
+## Screen Recording
+https://user-images.githubusercontent.com/62176326/182294853-c99e5f0c-b936-4944-9be5-6c3d650b34e1.mp4
