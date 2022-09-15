@@ -2,23 +2,43 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ritexe/globals/globals.dart';
+import 'package:ritexe/models/notifications.dart';
 import 'package:ritexe/widgets/notification_card.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class Notifications extends StatelessWidget {
-  const Notifications({Key? key}) : super(key: key);
+class NotificationsPage extends StatefulWidget {
+  const NotificationsPage({Key? key}) : super(key: key);
+
+  @override
+  State<NotificationsPage> createState() => _NotificationsPageState();
+}
+
+class _NotificationsPageState extends State<NotificationsPage> {
+  Future fetchNotification() async {
+    var notificationResponse =
+        await http.get(Uri.parse("http://10.0.2.2:8000/notifications/$userId"));
+    var questionThumbnails = [];
+
+    var data = jsonDecode(notificationResponse.body);
+    // for (var q in data) {
+    //   questionThumbnails.add(Notifications(
+    //     // prodName: q['prodName'],
+    //     // userId:
+    //   ));
+    // }
+    return questionThumbnails;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.w),
         child: Column(children: [
-          NotificationCard(
-              title: "you have a new buyer!", date: "15 Jun, 2022"),
-          NotificationCard(
-              title: "you have a new buyer!", date: "15 Jun, 2022"),
-          NotificationCard(
-              title: "you have a new buyer!", date: "15 Jun, 2022"),
-          NotificationCard(title: "you have a new buyer!", date: "15 Jun, 2022")
+          NotificationCard(username: "nea", prodName: "setsquare"),
+          NotificationCard(username: "nea", prodName: "setsquare"),
+          NotificationCard(username: "nea", prodName: "setsquare"),
         ]));
   }
 }

@@ -25,6 +25,14 @@ def post_answer(answer: Answer):
 def update_answer(id: int,answer: Answer):
     return conn.execute(answers.update().values(ans=answer.ans,upvote=answer.upVote,downvote=answer.downVote,date=answer.date,qs_id=answer.qs_id,user_id=answer.user_id).where(answers.c.ans_id == id))
 
+@answer.put('/answers/upvote/{id}')
+def update_upvote(id: int,answer: Answer):
+    return conn.execute(answers.update().values(upvote=answer.upVote).where(answers.c.ans_id == id))
+
+@answer.put('/answers/downvote/{id}')
+def update_upvote(id: int,answer: Answer):
+    return conn.execute(answers.update().values(upvote=answer.downVote).where(answers.c.ans_id == id))
+
 @answer.delete('/answers/{id}')
 def delete_answer(id: int):
     return conn.execute(answers.delete().where(answers.c.ans_id == id))

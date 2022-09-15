@@ -25,6 +25,10 @@ def post_user(user: User):
 def update_user(id: int,user: User):
     return conn.execute(users.update().values(username=user.username,name=user.name,email=user.email,password=user.password,upvote=user.upVotes).where(users.c.id == id))
 
+@user.put('/users/pwd/{id}')
+def update_pwd(id: int,user: User):
+    return conn.execute(users.update().values(password=user.password).where(users.c.id == id))
+
 @user.delete('/users/{id}')
 def delete_user(id: int):
     return conn.execute(users.delete().where(users.c.id == id))

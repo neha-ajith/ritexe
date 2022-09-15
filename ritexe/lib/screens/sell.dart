@@ -57,7 +57,7 @@ class _SellState extends State<Sell> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = [SellFeed(), PostItem(), Notifications()];
+    List<Widget> screens = [SellFeed(), PostItem(), NotificationsPage()];
     List<Widget> appBars = [
       sellFeedAppBar(context),
       postItemAppBar,

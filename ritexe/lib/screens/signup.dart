@@ -243,6 +243,7 @@ class _SignUpState extends State<SignUp> {
                           password: passwordController.text));
                       username = usernameController.text;
                       userId = await fetchUserId();
+                      print(userId);
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => const Feed()),

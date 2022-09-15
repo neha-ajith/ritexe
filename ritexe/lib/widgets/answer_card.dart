@@ -6,11 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AnswerCard extends StatefulWidget {
   final bool isUpVoted, isDownVoted;
   final String ans;
+  final int upVote, downVote;
   const AnswerCard({
     this.isDownVoted = false,
     this.isUpVoted = true,
     required this.ans,
     Key? key,
+    required this.upVote,
+    required this.downVote,
   }) : super(key: key);
 
   @override
@@ -41,14 +44,51 @@ class _AnswerCardState extends State<AnswerCard> {
             ),
             child: Padding(
                 padding: EdgeInsets.all(10.sp),
-                child: Text(
-                  widget.ans,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.sp,
-                    fontFamily: 'sans-serif-light',
-                    color: Colors.black,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.ans,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.sp,
+                        fontFamily: 'sans-serif-light',
+                        color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Row(
+                              children: [
+                                IconButton(
+                                  padding: EdgeInsets.zero,
+                                  icon: Icon(Icons.arrow_upward_rounded),
+                                  onPressed: () {},
+                                ),
+                                Text(widget.upVote.toString())
+                              ],
+                            ),
+                            SizedBox(width: 10.w),
+                            Row(
+                              children: [
+                                IconButton(
+                                  padding: EdgeInsets.zero,
+                                  icon: Icon(Icons.arrow_downward_rounded),
+                                  onPressed: () {},
+                                ),
+                                Text(widget.downVote.toString())
+                              ],
+                            ),
+                          ],
+                        ),
+                        Text("18 Jun '22")
+                      ],
+                    )
+                  ],
                 ))));
   }
 }

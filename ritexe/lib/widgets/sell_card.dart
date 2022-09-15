@@ -1,8 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart' as http;
+import 'package:ritexe/globals/globals.dart';
+import 'package:ritexe/models/notifications.dart';
 
 class SellCard extends StatefulWidget {
   final String title, qty, date, username, email;
@@ -20,7 +24,7 @@ class SellCard extends StatefulWidget {
 }
 
 class _SellCardState extends State<SellCard> {
-  Future<void> notifySeller() async {
+  Future notifySeller(Notifications notification) async {
     final Email email = Email(
       body:
           "Hello,\nJust saw your post, '${widget.title}' in Ritexe. I'm interested in your product. Please reach me out on this mail.\n\nBest,",
@@ -45,6 +49,16 @@ class _SellCardState extends State<SellCard> {
         content: Text(platformResponse),
       ),
     );
+
+    await http.post(Uri.parse("http://10.0.2.2:8000/notifications/"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'username': notification.username,
+          'prodName': notification.prodName,
+          'userId': notification.userId.toString()
+        }));
   }
 
   @override
@@ -52,7 +66,9 @@ class _SellCardState extends State<SellCard> {
     return Padding(
       padding: EdgeInsets.only(top: 10.h),
       child: GestureDetector(
-        onTap: notifySeller,
+        onTap: () {
+          notifySeller(Notifications(prodName: widget.title, userId: userId));
+        },
         child: Card(
           shape: const CircleBorder(),
           elevation: 1,

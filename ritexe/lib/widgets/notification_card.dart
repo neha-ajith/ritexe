@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NotificationCard extends StatelessWidget {
-  final String title, date;
-  const NotificationCard({required this.title, required this.date, Key? key})
+  final String username, prodName;
+  // add date to notifications.
+  const NotificationCard(
+      {required this.username, required this.prodName, Key? key})
       : super(key: key);
 
   @override
@@ -39,12 +41,12 @@ class NotificationCard extends StatelessWidget {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(title,
+                                Text("you have a new buyer",
                                     style: TextStyle(
                                         color: const Color(0xff4D729E),
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16.sp)),
-                                Text(date,
+                                Text("12 Jun 2022",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14.sp))
@@ -53,7 +55,7 @@ class NotificationCard extends StatelessWidget {
                           Padding(
                               padding: EdgeInsets.only(right: 10.w),
                               child: Text(
-                                  "Someone is interested on your product. Check your registered email for more details.",
+                                  "@$username is interested on your product, \"$prodName\". Check your registered email for more details.",
                                   style: TextStyle(fontSize: 14.sp)))
                         ])))));
   }

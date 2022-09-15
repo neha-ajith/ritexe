@@ -9,9 +9,9 @@ downvote = APIRouter()
 def fetch_downvotes():
     return conn.execute(downvotes.select()).fetchall()
 
-@downvote.get('/downvotes/{userId}')
-def fetch_user_downvotes(userId:int):
-    return conn.execute(downvotes.select().where(downvotes.c.user_id==userId)).fetchall()
+@downvote.get('/downvotes/{userId}/{ansId}')
+def fetch_user_downvote(userId:int,ansId:int):
+    return conn.execute(downvotes.select().where(downvotes.c.user_id==userId and downvotes.c.ans_id==ansId)).fetchall()
 
 @downvote.post('/downvotes/')
 def post_downvote(downvote: DownVote):

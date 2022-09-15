@@ -52,11 +52,12 @@ class _FeedState extends State<Feed> {
   void initState() {
     super.initState();
     fetchQuestion();
+    print(userId);
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = [Questions(), PostQuestion(), Notifications()];
+    List<Widget> screens = [Questions(), PostQuestion(), NotificationsPage()];
     List<Widget> appBars = [
       questionAppBar(context),
       postQuestionAppBar,

@@ -13,6 +13,11 @@ def fetch_upvotes():
 def fetch_user_upvotes(userId:int):
     return conn.execute(upvotes.select().where(upvotes.c.user_id==userId)).fetchall()
 
+@upvote.get('/upvotes/{userId}/{ansId}')
+def fetch_user_upvote(userId:int,ansId:int):
+    return conn.execute(upvotes.select().filter((upvotes.c.user_id == userId) | (upvotes.c.ans_id == ansId))).fetchall()
+    # .where(upvotes.c.user_id==userId and upvotes.c.ans_id==ansId)).fetchall()
+
 @upvote.post('/upvotes/')
 def post_upvote(upvote: UpVote):
     return conn.execute(upvotes.insert().values(user_id=upvote.user_id,ans_id=upvote.ans_id))

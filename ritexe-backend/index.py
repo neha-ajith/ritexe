@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routes.index import user,question,answer,item,upvote,downvote
+from routes.index import user,question,answer,item,upvote,downvote,notifications
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 app.add_middleware(
@@ -15,3 +15,4 @@ app.include_router(answer)
 app.include_router(item)
 app.include_router(upvote)
 app.include_router(downvote)
+app.include_router(notifications)
