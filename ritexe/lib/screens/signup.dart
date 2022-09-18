@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritexe/globals/globals.dart';
 import 'package:ritexe/models/user.dart';
-import 'package:ritexe/screens/feed.dart';
 import 'package:ritexe/screens/signin.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -28,7 +27,7 @@ Future fetchUser(String username) async {
   }
 }
 
-Future fetchUserId() async {
+Future fetchUserId(String username) async {
   var userResponse =
       await http.get(Uri.parse("http://10.0.2.2:8000/users/auth/$username"));
   var data = jsonDecode(userResponse.body);
@@ -241,13 +240,13 @@ class _SignUpState extends State<SignUp> {
                           username: usernameController.text,
                           email: emailController.text,
                           password: passwordController.text));
-                      username = usernameController.text;
-                      userId = await fetchUserId();
-                      print(userId);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Feed()),
-                      );
+                      // username = usernameController.text;
+                      // userId = await fetchUserId();
+                      // print(userId);
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => Feed()),
+                      // );
                     } else {
                       Navigator.push(
                         context,

@@ -10,35 +10,36 @@ import 'package:ritexe/widgets/my_item_card.dart';
 import 'package:http/http.dart' as http;
 
 class PostedItems extends StatefulWidget {
-  const PostedItems({Key? key}) : super(key: key);
+  final int userId;
+  const PostedItems({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<PostedItems> createState() => _PostedItemsState();
 }
 
-Future fetchUserItems() async {
-  var itemResponse =
-      await http.get(Uri.parse("http://10.0.2.2:8000/items/$userId"));
-  var userResponse =
-      await http.get(Uri.parse("http://10.0.2.2:8000/users/$userId"));
-
-  var itemThumbnails = [];
-  var username = jsonDecode(userResponse.body)[0]['username'];
-  var email = jsonDecode(userResponse.body)[0]['email'];
-
-  var data = jsonDecode(itemResponse.body);
-  for (var i in data) {
-    itemThumbnails.add(Item(
-        email: email,
-        title: i['name'],
-        username: username,
-        date: DateTime.parse(i['date']),
-        quantity: i['quantity']));
-  }
-  return itemThumbnails;
-}
-
 class _PostedItemsState extends State<PostedItems> {
+  Future fetchUserItems() async {
+    var itemResponse = await http
+        .get(Uri.parse("http://10.0.2.2:8000/items/${widget.userId}"));
+    var userResponse = await http
+        .get(Uri.parse("http://10.0.2.2:8000/users/${widget.userId}"));
+
+    var itemThumbnails = [];
+    var username = jsonDecode(userResponse.body)[0]['username'];
+    var email = jsonDecode(userResponse.body)[0]['email'];
+
+    var data = jsonDecode(itemResponse.body);
+    for (var i in data) {
+      itemThumbnails.add(Item(
+          email: email,
+          title: i['name'],
+          username: username,
+          date: DateTime.parse(i['date']),
+          quantity: i['quantity']));
+    }
+    return itemThumbnails;
+  }
+
   @override
   void initState() {
     super.initState();

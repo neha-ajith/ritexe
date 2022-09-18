@@ -3,14 +3,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritexe/globals/globals.dart';
+import 'package:ritexe/screens/admin.dart';
 import 'package:ritexe/screens/feed.dart';
 import 'package:ritexe/screens/signup.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class SignIn extends StatelessWidget {
+import 'package:ritexe/screens/welcomeadmin.dart';
+
+class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
   @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  Future fetchUser(String username) async {
+    var userResponse =
+        await http.get(Uri.parse("http://10.0.2.2:8000/users/auth/$username"));
+    var data = jsonDecode(userResponse.body);
+    if (data.length == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future fetchUserId(String username) async {
+    var userResponse =
+        await http.get(Uri.parse("http://10.0.2.2:8000/users/auth/$username"));
+    var data = jsonDecode(userResponse.body);
+    return data[0]['id'];
+  }
+
+  @override
   Widget build(BuildContext context) {
+    TextEditingController usernameController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -66,9 +96,10 @@ class SignIn extends StatelessWidget {
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
                   child: TextField(
+                    controller: usernameController,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Username/Email',
+                      hintText: 'Username',
                     ),
                   ),
                 ),
@@ -96,6 +127,8 @@ class SignIn extends StatelessWidget {
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
                   child: TextField(
+                    obscureText: true,
+                    controller: passwordController,
                     decoration: InputDecoration(
                         border: InputBorder.none, hintText: 'Password'),
                   ),
@@ -115,11 +148,22 @@ class SignIn extends StatelessWidget {
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),
                     ))),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Feed()),
-                  );
+                onPressed: () async {
+                  int userId = await fetchUserId(usernameController.text);
+                  if (userId == 24) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => WelcomeAdmin()),
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Feed(
+                                userId: userId,
+                              )),
+                    );
+                  }
                 },
               ),
               SizedBox(height: 20.h),

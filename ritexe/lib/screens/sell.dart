@@ -14,7 +14,8 @@ import 'package:ritexe/widgets/sell_card.dart';
 import 'package:http/http.dart' as http;
 
 class Sell extends StatefulWidget {
-  const Sell({Key? key}) : super(key: key);
+  final int userId;
+  const Sell({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<Sell> createState() => _SellState();
@@ -57,9 +58,13 @@ class _SellState extends State<Sell> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = [SellFeed(), PostItem(), NotificationsPage()];
+    List<Widget> screens = [
+      SellFeed(userId: widget.userId),
+      PostItem(userId: widget.userId),
+      NotificationsPage(userId: widget.userId)
+    ];
     List<Widget> appBars = [
-      sellFeedAppBar(context),
+      sellFeedAppBar(context, widget.userId),
       postItemAppBar,
       notificationsAppBar
     ];
@@ -98,7 +103,8 @@ class _SellState extends State<Sell> {
 }
 
 class SellFeed extends StatefulWidget {
-  const SellFeed({Key? key}) : super(key: key);
+  final int userId;
+  const SellFeed({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<SellFeed> createState() => _SellFeedState();
@@ -122,6 +128,7 @@ class _SellFeedState extends State<SellFeed> {
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   return SellCard(
+                      userId: widget.userId,
                       email: snapshot.data[index].email,
                       title: snapshot.data[index].title,
                       username: snapshot.data[index].username,
@@ -137,7 +144,7 @@ class _SellFeedState extends State<SellFeed> {
   }
 }
 
-Row sellFeedAppBar(context) => Row(
+Row sellFeedAppBar(context, int userId) => Row(
       children: [
         Container(
           decoration: BoxDecoration(
@@ -170,6 +177,7 @@ Row sellFeedAppBar(context) => Row(
                         context,
                         MaterialPageRoute(
                             builder: (context) => ItemSearchResult(
+                                  userId: userId,
                                   val: value,
                                 )),
                       );
@@ -187,7 +195,7 @@ Row sellFeedAppBar(context) => Row(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Feed()),
+                MaterialPageRoute(builder: (context) => Feed(userId: userId)),
               );
             },
             icon: Icon(

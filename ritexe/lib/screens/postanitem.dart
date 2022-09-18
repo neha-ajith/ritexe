@@ -8,26 +8,27 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class PostItem extends StatefulWidget {
-  const PostItem({Key? key}) : super(key: key);
+  final int userId;
+  const PostItem({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<PostItem> createState() => _PostItemState();
 }
 
-Future saveItem(Item item) async {
-  await http.post(Uri.parse("http://10.0.2.2:8000/items/"),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'name': item.title,
-        'quantity': item.quantity.toString(),
-        'date': item.date.toString(),
-        'user_id': userId.toString()
-      }));
-}
-
 class _PostItemState extends State<PostItem> {
+  Future saveItem(Item item) async {
+    await http.post(Uri.parse("http://10.0.2.2:8000/items/"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'name': item.title,
+          'quantity': item.quantity.toString(),
+          'date': item.date.toString(),
+          'user_id': widget.userId.toString()
+        }));
+  }
+
   TextEditingController titleController = TextEditingController();
   TextEditingController quanityController = TextEditingController();
   @override

@@ -4,36 +4,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritexe/globals/globals.dart';
 import 'package:ritexe/models/user.dart';
-import 'package:ritexe/screens/editpassword.dart';
 import 'package:ritexe/screens/myanswers.dart';
 import 'package:ritexe/screens/myquestions.dart';
 import 'package:ritexe/screens/posteditems.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:ritexe/screens/signin.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  final int userId;
+  const Profile({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<Profile> createState() => _ProfileState();
 }
 
-Future fetchOneUser() async {
-  var userResponse =
-      await http.get(Uri.parse("http://10.0.2.2:8000/users/$userId"));
-
-  var data = jsonDecode(userResponse.body);
-  User user = User(
-      id: data[0]["id"],
-      name: data[0]["name"],
-      email: data[0]["email"],
-      password: data[0]["password"],
-      upVote: data[0]["upvote"],
-      username: data[0]["username"]);
-  return user;
-}
-
 class _ProfileState extends State<Profile> {
+  Future fetchOneUser() async {
+    var userResponse = await http
+        .get(Uri.parse("http://10.0.2.2:8000/users/${widget.userId}"));
+
+    var data = jsonDecode(userResponse.body);
+    User user = User(
+        id: data[0]["id"],
+        name: data[0]["name"],
+        email: data[0]["email"],
+        password: data[0]["password"],
+        upVote: data[0]["upvote"],
+        username: data[0]["username"]);
+    return user;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -75,29 +76,13 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         SizedBox(height: 20.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(snapshot.data.name,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25.sp,
-                                  fontFamily: 'sans-serif-light',
-                                  color: Colors.white,
-                                )),
-                            Container(
-                              child: Container(
-                                child: IconButton(
-                                  icon: Image.asset(
-                                    "assets/edit.png",
-                                    fit: BoxFit.fill,
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        Text(snapshot.data.name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25.sp,
+                              fontFamily: 'sans-serif-light',
+                              color: Colors.white,
+                            )),
                         Text("${snapshot.data.upVote} upvotes",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -170,24 +155,24 @@ class _ProfileState extends State<Profile> {
                                   color: Colors.black,
                                 )),
                             SizedBox(width: 55.w),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const EditPassword()),
-                                );
-                              },
-                              child: Text("edit",
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18.sp,
-                                    fontFamily: 'sans-serif-light',
-                                    color: Color.fromARGB(255, 253, 252, 252),
-                                  )),
-                            ),
+                            // TextButton(
+                            //   onPressed: () {
+                            //     Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //           builder: (context) =>
+                            //               const EditPassword()),
+                            //     );
+                            //   },
+                            //   child: Text("edit",
+                            //       textAlign: TextAlign.right,
+                            //       style: TextStyle(
+                            //         fontWeight: FontWeight.bold,
+                            //         fontSize: 18.sp,
+                            //         fontFamily: 'sans-serif-light',
+                            //         color: Color.fromARGB(255, 253, 252, 252),
+                            //       )),
+                            // ),
                           ],
                         ),
                         SizedBox(height: 30.h),
@@ -210,7 +195,8 @@ class _ProfileState extends State<Profile> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const MyQuestions()),
+                                  builder: (context) =>
+                                      MyQuestions(userId: widget.userId)),
                             );
                           },
                         ),
@@ -234,7 +220,8 @@ class _ProfileState extends State<Profile> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const MyAnswers()),
+                                  builder: (context) =>
+                                      MyAnswers(userId: widget.userId)),
                             );
                           },
                         ),
@@ -258,7 +245,32 @@ class _ProfileState extends State<Profile> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const PostedItems()),
+                                  builder: (context) =>
+                                      PostedItems(userId: widget.userId)),
+                            );
+                          },
+                        ),
+                        SizedBox(height: 30),
+                        ElevatedButton(
+                          child: Padding(
+                              padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
+                              child: Text(
+                                "Logout",
+                                style: TextStyle(fontSize: 20.sp),
+                              )),
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(secondaryColor),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50),
+                              ))),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignIn()),
                             );
                           },
                         ),

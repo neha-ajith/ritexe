@@ -8,8 +8,11 @@ import 'package:ritexe/screens/question_page.dart';
 import 'package:ritexe/widgets/question_card.dart';
 
 class QuestionSearchResult extends StatefulWidget {
+  final int userId;
   final String val;
-  const QuestionSearchResult({Key? key, required this.val}) : super(key: key);
+  const QuestionSearchResult(
+      {Key? key, required this.val, required this.userId})
+      : super(key: key);
 
   @override
   State<QuestionSearchResult> createState() => _QuestionSearchResultState();
@@ -65,6 +68,7 @@ class _QuestionSearchResultState extends State<QuestionSearchResult> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => QuestionPage(
+                                      userId: widget.userId,
                                       id: snapshot.data[index].id)));
                         }),
                         child: QuestionCard(

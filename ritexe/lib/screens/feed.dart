@@ -15,7 +15,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Feed extends StatefulWidget {
-  const Feed({Key? key}) : super(key: key);
+  final int userId;
+  const Feed({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<Feed> createState() => _FeedState();
@@ -52,14 +53,18 @@ class _FeedState extends State<Feed> {
   void initState() {
     super.initState();
     fetchQuestion();
-    print(userId);
+    // print(userId);
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = [Questions(), PostQuestion(), NotificationsPage()];
+    List<Widget> screens = [
+      Questions(userId: widget.userId),
+      PostQuestion(userId: widget.userId),
+      NotificationsPage(userId: widget.userId)
+    ];
     List<Widget> appBars = [
-      questionAppBar(context),
+      questionAppBar(context, widget.userId),
       postQuestionAppBar,
       notificationsAppBar
     ];
@@ -92,7 +97,8 @@ class _FeedState extends State<Feed> {
 }
 
 class Questions extends StatefulWidget {
-  const Questions({Key? key}) : super(key: key);
+  final int userId;
+  const Questions({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<Questions> createState() => _QuestionsState();
@@ -120,8 +126,10 @@ class _QuestionsState extends State<Questions> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  QuestionPage(id: snapshot.data[index].id)));
+                              builder: (context) => QuestionPage(
+                                    id: snapshot.data[index].id,
+                                    userId: widget.userId,
+                                  )));
                     }),
                     child: QuestionCard(
                         title: snapshot.data[index].title,
@@ -136,14 +144,14 @@ class _QuestionsState extends State<Questions> {
   }
 }
 
-Row questionAppBar(BuildContext context) {
+Row questionAppBar(BuildContext context, int userId) {
   return Row(
     children: [
       IconButton(
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const Profile()),
+            MaterialPageRoute(builder: (context) => Profile(userId: userId)),
           );
         },
         icon: CircleAvatar(
@@ -186,6 +194,7 @@ Row questionAppBar(BuildContext context) {
                       context,
                       MaterialPageRoute(
                           builder: (context) => QuestionSearchResult(
+                                userId: userId,
                                 val: value,
                               )),
                     );
@@ -203,7 +212,7 @@ Row questionAppBar(BuildContext context) {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Sell()),
+              MaterialPageRoute(builder: (context) => Sell(userId: userId)),
             );
           },
           icon: Icon(Icons.shopping_cart, color: primaryColor))

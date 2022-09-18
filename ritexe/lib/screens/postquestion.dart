@@ -8,26 +8,27 @@ import 'dart:convert';
 import 'package:ritexe/models/question.dart';
 
 class PostQuestion extends StatefulWidget {
-  const PostQuestion({Key? key}) : super(key: key);
+  final int userId;
+  const PostQuestion({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<PostQuestion> createState() => _PostQuestionState();
 }
 
-Future saveQuestion(Question question) async {
-  await http.post(Uri.parse("http://10.0.2.2:8000/questions/"),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'qs_title': question.qsTitle,
-        'qs_desc': question.qsDescription,
-        'date': DateTime.now().toString(),
-        'user_id': "3"
-      }));
-}
-
 class _PostQuestionState extends State<PostQuestion> {
+  Future saveQuestion(Question question) async {
+    await http.post(Uri.parse("http://10.0.2.2:8000/questions/"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'qs_title': question.qsTitle,
+          'qs_desc': question.qsDescription,
+          'date': DateTime.now().toString(),
+          'user_id': widget.userId.toString()
+        }));
+  }
+
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController tagsController = TextEditingController();

@@ -2,14 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ritexe/globals/globals.dart';
-import 'package:ritexe/models/notifications.dart';
 import 'package:ritexe/widgets/notification_card.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class NotificationsPage extends StatefulWidget {
-  const NotificationsPage({Key? key}) : super(key: key);
+  final int userId;
+  const NotificationsPage({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<NotificationsPage> createState() => _NotificationsPageState();
@@ -17,8 +16,8 @@ class NotificationsPage extends StatefulWidget {
 
 class _NotificationsPageState extends State<NotificationsPage> {
   Future fetchNotification() async {
-    var notificationResponse =
-        await http.get(Uri.parse("http://10.0.2.2:8000/notifications/$userId"));
+    var notificationResponse = await http
+        .get(Uri.parse("http://10.0.2.2:8000/notifications/${widget.userId}"));
     var questionThumbnails = [];
 
     var data = jsonDecode(notificationResponse.body);

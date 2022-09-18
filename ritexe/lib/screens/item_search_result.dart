@@ -8,8 +8,10 @@ import 'package:ritexe/models/item.dart';
 import 'package:ritexe/widgets/sell_card.dart';
 
 class ItemSearchResult extends StatefulWidget {
+  final int userId;
   final String val;
-  const ItemSearchResult({Key? key, required this.val}) : super(key: key);
+  const ItemSearchResult({Key? key, required this.val, required this.userId})
+      : super(key: key);
 
   @override
   State<ItemSearchResult> createState() => _ItemSearchResultState();
@@ -60,6 +62,7 @@ class _ItemSearchResultState extends State<ItemSearchResult> {
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return SellCard(
+                          userId: widget.userId,
                           email: snapshot.data[index].email,
                           title: snapshot.data[index].title,
                           username: snapshot.data[index].username,

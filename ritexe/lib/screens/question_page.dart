@@ -9,8 +9,9 @@ import 'dart:convert';
 import 'package:ritexe/models/question.dart';
 
 class QuestionPage extends StatefulWidget {
-  final int id;
-  const QuestionPage({Key? key, required this.id}) : super(key: key);
+  final int id, userId;
+  const QuestionPage({Key? key, required this.id, required this.userId})
+      : super(key: key);
 
   @override
   State<QuestionPage> createState() => _QuestionPageState();
@@ -40,14 +41,14 @@ class _QuestionPageState extends State<QuestionPage> {
     for (var a in data) {
       isUpvoted = false;
       isDownvoted = false;
-      var upVoteResponse = await http.get(
-          Uri.parse("http://10.0.2.2:8000/upvotes/$userId/${a['ans_id']}"));
+      var upVoteResponse = await http.get(Uri.parse(
+          "http://10.0.2.2:8000/upvotes/${widget.userId}/${a['ans_id']}"));
       var upVoteData = jsonDecode(upVoteResponse.body);
       if (upVoteData.length != 0) {
         isUpvoted = true;
       }
-      var downVoteResponse = await http.get(
-          Uri.parse("http://10.0.2.2:8000/downvotes/$userId/${a['ans_id']}"));
+      var downVoteResponse = await http.get(Uri.parse(
+          "http://10.0.2.2:8000/downvotes/${widget.userId}/${a['ans_id']}"));
       var downVoteData = jsonDecode(downVoteResponse.body);
       if (downVoteData.length != 0) {
         isDownvoted = true;
@@ -93,7 +94,7 @@ class _QuestionPageState extends State<QuestionPage> {
   }
 
   Future saveUpVote(int ansId, Answer answer) async {
-    await http.post(Uri.parse("http://10.0.2.2:8000/answers/upvote/$ansId"),
+    await http.put(Uri.parse("http://10.0.2.2:8000/answers/upvote/$ansId"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -102,8 +103,33 @@ class _QuestionPageState extends State<QuestionPage> {
         }));
   }
 
+  Future deleteUpVoteData(ansId) async {
+    await http.delete(
+      Uri.parse('http://10.0.2.2:8000/upvotes/$ansId'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+  }
+
+  Future deleteUpVote(int ansId, Answer answer) async {
+    // await http.delete(
+    // Uri.parse('http://10.0.2.2:8000/answers/upvote/$ansId'),
+    // headers: <String, String>{
+    //   'Content-Type': 'application/json; charset=UTF-8',
+    // },
+    // );
+    await http.post(Uri.parse("http://10.0.2.2:8000/answers/upvote/$ansId"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'upVote': (answer.upVote - 1).toString(),
+        }));
+  }
+
   Future saveDownVote(int ansId, Answer answer) async {
-    await http.post(Uri.parse("http://10.0.2.2:8000/answers/downvote/$ansId"),
+    await http.put(Uri.parse("http://10.0.2.2:8000/answers/downvote/$ansId"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -119,7 +145,17 @@ class _QuestionPageState extends State<QuestionPage> {
         },
         body: jsonEncode(<String, String>{
           'ans_id': answer.ansId.toString(),
-          'user_id': userId.toString()
+          'user_id': widget.userId.toString()
+        }));
+  }
+
+  Future saveReport(int id) async {
+    await http.post(Uri.parse("http://10.0.2.2:8000/reports/"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'pos_id': id.toString(),
         }));
   }
 
@@ -132,6 +168,10 @@ class _QuestionPageState extends State<QuestionPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isAdmin = false;
+    if (widget.userId == 24) {
+      isAdmin = true;
+    }
     TextEditingController answerController = TextEditingController();
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -164,8 +204,33 @@ class _QuestionPageState extends State<QuestionPage> {
                                     color: Colors.white)),
                             SizedBox(height: 10.h),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                Row(
+                                  children: [
+                                    // TextButton(
+                                    //     onPressed: () {
+                                    //       setState(() async {
+                                    //         await saveReport(
+                                    //             snapshot.data.qsId);
+                                    //       });
+                                    //     },
+                                    //     child: Text(
+                                    //       "Report",
+                                    //       style: TextStyle(color: Colors.black),
+                                    //     )),
+                                    Visibility(
+                                      visible: isAdmin,
+                                      child: TextButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            "Delete",
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          )),
+                                    ),
+                                  ],
+                                ),
                                 Text(
                                   "18 Jun '22",
                                   style: TextStyle(
@@ -273,75 +338,42 @@ class _QuestionPageState extends State<QuestionPage> {
                                                                 Colors.black)),
                                                     SizedBox(height: 10.h),
                                                     Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Row(children: [
-                                                            Row(children: [
-                                                              IconButton(
-                                                                  color: snapshot
-                                                                          .data[
-                                                                              0]
-                                                                              [
-                                                                              index]
-                                                                          .isUpvoted
-                                                                      ? Colors
-                                                                          .green
-                                                                      : Colors
-                                                                          .black,
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .zero,
-                                                                  icon: Icon(Icons
-                                                                      .arrow_upward_rounded),
-                                                                  onPressed:
-                                                                      () {
-                                                                    setState(
-                                                                        () {
-                                                                      // saveUpVote(
-                                                                      //     snapshot
-                                                                      //         .data[0][index]
-                                                                      //         .ansId,
-                                                                      //     userId);
-                                                                    });
-                                                                  }),
-                                                              Text(snapshot
-                                                                  .data[0]
-                                                                      [index]
-                                                                  .upVote
-                                                                  .toString())
-                                                            ]),
-                                                            SizedBox(
-                                                                width: 10.w),
-                                                            Row(children: [
-                                                              IconButton(
-                                                                color: snapshot
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        TextButton(
+                                                            onPressed: () {
+                                                              setState(
+                                                                  () async {
+                                                                await saveReport(
+                                                                    snapshot
                                                                         .data[0]
                                                                             [
                                                                             index]
-                                                                        .isDownvoted
-                                                                    ? Colors.red
-                                                                    : Colors
-                                                                        .black,
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .zero,
-                                                                icon: Icon(Icons
-                                                                    .arrow_downward_rounded),
-                                                                onPressed: () {
-                                                                  //write code for downvoting answer
-                                                                },
-                                                              ),
-                                                              Text(snapshot
-                                                                  .data[0]
-                                                                      [index]
-                                                                  .downVote
-                                                                  .toString())
-                                                            ])
-                                                          ]),
-                                                          Text("18 Jun '22")
-                                                        ])
+                                                                        .ansId);
+                                                              });
+                                                            },
+                                                            child: Text(
+                                                              "Report",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black),
+                                                            )),
+                                                        Visibility(
+                                                          visible: isAdmin,
+                                                          child: TextButton(
+                                                              onPressed: () {},
+                                                              child: Text(
+                                                                "Delete",
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .black),
+                                                              )),
+                                                        ),
+                                                        Text("18 Jun '22"),
+                                                      ],
+                                                    )
                                                   ]))));
                                 }),
                             SizedBox(height: 10.h),
@@ -392,7 +424,7 @@ class _QuestionPageState extends State<QuestionPage> {
                                     saveAnswer(Answer(
                                         ans: answerController.text,
                                         qsId: widget.id,
-                                        userId: userId));
+                                        userId: widget.userId));
                                   });
                                 })
                           ]);

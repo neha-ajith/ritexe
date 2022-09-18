@@ -9,32 +9,33 @@ import 'package:ritexe/widgets/question_card.dart';
 import 'package:http/http.dart' as http;
 
 class MyQuestions extends StatefulWidget {
-  const MyQuestions({Key? key}) : super(key: key);
+  final int userId;
+  const MyQuestions({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<MyQuestions> createState() => _MyQuestionsState();
 }
 
-Future fetchUserQuestion() async {
-  var questionResponse =
-      await http.get(Uri.parse("http://10.0.2.2:8000/questions/$userId"));
-  var questionThumbnails = [];
-
-  var data = jsonDecode(questionResponse.body);
-  for (var q in data) {
-    var answerResponse =
-        await http.get(Uri.parse("http://10.0.2.2:8000/answers/${q['qs_id']}"));
-    int num = jsonDecode(answerResponse.body).length;
-    questionThumbnails.add(QuestionThumbNail(
-      id: q['qs_id'],
-      title: q['qs_title'],
-      noOfAnswers: num,
-    ));
-  }
-  return questionThumbnails;
-}
-
 class _MyQuestionsState extends State<MyQuestions> {
+  Future fetchUserQuestion() async {
+    var questionResponse = await http
+        .get(Uri.parse("http://10.0.2.2:8000/questions/${widget.userId}"));
+    var questionThumbnails = [];
+
+    var data = jsonDecode(questionResponse.body);
+    for (var q in data) {
+      var answerResponse = await http
+          .get(Uri.parse("http://10.0.2.2:8000/answers/${q['qs_id']}"));
+      int num = jsonDecode(answerResponse.body).length;
+      questionThumbnails.add(QuestionThumbNail(
+        id: q['qs_id'],
+        title: q['qs_title'],
+        noOfAnswers: num,
+      ));
+    }
+    return questionThumbnails;
+  }
+
   @override
   void initState() {
     super.initState();

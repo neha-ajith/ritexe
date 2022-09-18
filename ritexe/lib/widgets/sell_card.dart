@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
-import 'package:ritexe/globals/globals.dart';
 import 'package:ritexe/models/notifications.dart';
 
 class SellCard extends StatefulWidget {
+  final int userId;
   final String title, qty, date, username, email;
   const SellCard(
       {Key? key,
@@ -16,7 +16,8 @@ class SellCard extends StatefulWidget {
       required this.email,
       required this.qty,
       required this.date,
-      required this.username})
+      required this.username,
+      required this.userId})
       : super(key: key);
 
   @override
@@ -67,7 +68,8 @@ class _SellCardState extends State<SellCard> {
       padding: EdgeInsets.only(top: 10.h),
       child: GestureDetector(
         onTap: () {
-          notifySeller(Notifications(prodName: widget.title, userId: userId));
+          notifySeller(
+              Notifications(prodName: widget.title, userId: widget.userId));
         },
         child: Card(
           shape: const CircleBorder(),
